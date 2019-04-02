@@ -766,3 +766,451 @@ int army_management_team_system(int checker_of_user_domain)
                 }
         }
         // Soldiers under Officers 7
+        while (sub_select_of_army_officer_ams == 7)
+        {   
+            int batch_id_index;
+            string check_batch_id;
+            title("SOLDIERS UNDER THE OFFICER");
+            soldier_under_officers_ams();
+            batch_id_index = id_take_to_fetch_and_id_check_officer_ams();
+            soldier_under_officer_view_ams(batch_id_index);
+            sub_select_of_army_officer_ams = yes_or_no(sub_select_of_army_officer_ams);
+            if(sub_select_of_army_officer_ams == 0)
+            {
+                goto army_officers_menu;
+            }
+
+        }
+        // GO TO AGAIN LOG IN 8
+        while (sub_select_of_army_officer_ams == 8)
+        {
+            goto ams_top_menu;
+        }
+    }
+    // ARMY INSTRUMENTS // COMPLETE
+    while (main_selected_option_of_ams == 3)
+    {
+        sub_menu_instruments:
+        int sub_of_sub_selected_instruments;
+        title("ARMY TEAM MANAGEMENT SYSTEM");
+        to_show_sub_menu_army_instruments_ams(5);
+        sub_select_of_army_instruments_ams = selecting_function(columns_of_screen / 3 + 10, 12,5);
+        // VIEW INSTRUMENTS 1
+        while (sub_select_of_army_instruments_ams == 1)
+        {   
+            instrument_stayer:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_army_instruments_ams(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+            // Carriers
+            while (sub_of_sub_selected_instruments == 1)
+            {
+                to_show_carriers_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // Weapons
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                
+                to_show_weapons_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // missiles
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_show_missilies_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // tanks
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_show_tank_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // atomic Bomb
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_show_atomic_bombs_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // back
+            while (sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        // Add INSTRUMENTS
+        while (sub_select_of_army_instruments_ams == 2)
+        {
+            INS_PLACE_2:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_army_instruments_ams(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+            while (sub_of_sub_selected_instruments == 1)
+            {
+                to_show_carriers_details();
+                to_add_data_in_array_carrier();
+                to_add_data_of_carrier_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // Weapons
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                
+                to_show_weapons_details();
+                to_add_data_in_array_weapons();
+                to_add_data_of_weapons_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // missiles
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_add_data_in_array_missilies();
+                to_show_missilies_details();
+                to_add_data_of_missilies_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // tanks
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_show_tank_details();
+                to_add_data_in_array_tank();
+                to_add_data_of_tank_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // atomic Bomb
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_show_atomic_bombs_details();
+                to_add_data_in_array_bomb();
+                to_add_data_of_bomb_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // back
+            while (sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+            
+        }
+        // edit instruments
+        while(sub_select_of_army_instruments_ams == 3)
+        {
+            instrument_stayer_edit:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_army_instruments_ams(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+               while (sub_of_sub_selected_instruments == 1)
+            {
+                to_edit_instrument_record_carriers();
+                to_add_whole_data_in_txt_carriers();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                to_edit_instrument_record_weapons();
+                to_add_whole_data_in_txt_weapons();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_edit_instrument_record_missilies();
+                to_add_whole_data_in_txt_missilies();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_edit_instrument_record_tank();
+                to_add_whole_data_in_txt_tank();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_edit_instrument_record_bombs();
+                to_add_whole_data_in_txt_bombs();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while(sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+            
+        }
+         // graph
+        while (sub_select_of_army_instruments_ams == 4)
+        {
+            system("cls");
+            title("GRAPH OF BUDGET");
+            graph_ams();
+            Sleep(5000);
+            sub_select_of_army_instruments_ams = yes_or_no(sub_select_of_army_instruments_ams);
+            if(sub_select_of_army_instruments_ams == 0)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        // Budget Calculate
+        while (sub_select_of_army_instruments_ams == 5)
+        {
+            float total;
+            title("THE ARMY BUDGET");
+            total_ams_budget();
+            sub_select_of_army_instruments_ams = yes_or_no(sub_select_of_army_instruments_ams);
+            if(sub_select_of_army_instruments_ams == 0)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        //Back
+        while (sub_selected_instruments == 6 || sub_select_of_army_instruments_ams == 6)
+        {
+            goto ams_top_menu;
+        }
+    }
+    // CROPS
+    while (main_selected_option_of_ams == 4)
+    {
+        int sub_select_of_crops_ams;
+        menu_crops:
+        title("CROPS MANAGEMENT SYSTEM");
+        to_show_sub_menu_army_crops_ams(2);
+        sub_select_of_crops_ams = selecting_function(columns_of_screen / 3 + 10,12,2);
+        while(sub_select_of_crops_ams == 1)
+        {
+            to_show_xxx_khor();
+            sub_select_of_crops_ams = yes_or_no(sub_select_of_crops_ams);
+            if(sub_select_of_crops_ams == 0)
+            {
+                goto menu_crops;
+            }
+        }
+        while(sub_select_of_crops_ams == 2)
+        {
+            to_show_soc_khor();
+            sub_select_of_crops_ams = yes_or_no(sub_select_of_crops_ams);
+            if(sub_select_of_crops_ams == 0)
+            {
+                goto menu_crops;
+            }
+        }
+        if (sub_select_of_crops_ams ==  3)
+        {
+            goto ams_top_menu;
+        }
+    }
+    // Report of work
+    while (main_selected_option_of_ams == 5)
+    {
+        
+        to_fetch_feedback();
+        main_selected_option_of_ams = yes_or_no(main_selected_option_of_ams);
+        if (main_selected_option_of_ams == 0)
+        {
+            goto ams_top_menu;
+        }
+    }
+}
+// 1. ARMY MANAGEMENT SYSTEM ENDED
+// 2. NAVY MANAGEMENT SYSTEM
+int navy_management_team_system(int checker_of_user_domain)
+{
+    
+    int sub_selected_instruments;
+    int main_selected_option_of_nms;
+    int sub_select_of_navy_instruments_nms, sub_select_of_navy_soldier_nms, sub_select_of_navy_officer_nms;
+    int item_quantity[5];
+// Main Menu of NAVY TEAM MANAGEMENT SYSTEM
+nms_top_menu:
+    title("NAVY TEAM MANAGEMENT SYSTEM");
+    to_show_main_menu_nms(5);
+    
+    main_selected_option_of_nms = selecting_function(columns_of_screen / 3 + 10,12,5);
+    // NAVY soldiers in nms // COMPLETE
+    while (main_selected_option_of_nms == 1)
+    {
+    navy_soldiers_menu:
+        title("NAVY TEAM MANAGEMENT SYSTEM");
+        to_show_sub_menu_navy_soldier_nms(5);
+        sub_select_of_navy_soldier_nms = selecting_function(columns_of_screen / 3 + 10,12,5);
+        // View Personal details of Soldiers 1
+        while (sub_select_of_navy_soldier_nms == 1)
+        {
+            int check_batch_id;
+            int batch_id_idx;
+            title("PERSONAL DETAILS OF NAVY SOLDIER");
+            batch_id_idx = id_take_to_fetch_and_id_check_soldiers_nms();
+            check_batch_id = to_show_personal_details_from_navy_soldiers_array(batch_id_idx);
+            if (check_batch_id == 1)
+            {
+                sub_select_of_navy_soldier_nms = yes_or_no(sub_select_of_navy_soldier_nms);
+                if (sub_select_of_navy_soldier_nms == 0 )
+                {
+                    goto navy_soldiers_menu;
+                }
+            }
+        }
+        // ADD NEW RECORD 2
+        while (sub_select_of_navy_soldier_nms == 2)
+        {
+            title("ADD DETAILS OF NAVY SOLDIER");
+            to_show_note("121-");
+            to_add_data_in_soldiers_array_nms();
+            to_add_data_in_soldier_txt_nms();
+            sub_select_of_navy_soldier_nms = yes_or_no(sub_select_of_navy_soldier_nms);
+            if (sub_select_of_navy_soldier_nms == 0 )
+            {
+                goto navy_soldiers_menu;
+            }
+        }
+        // EDIT RECORD 3
+        while (sub_select_of_navy_soldier_nms == 3)
+        {
+            int check_batch_idx;
+            int batch_id_index;
+            title("EDIT DETAILS OF NAVY SOLDIER");
+            batch_id_index = id_take_to_fetch_and_id_check_soldiers_nms();
+            to_edit_data_in_soldiers_array_nms(batch_id_index);
+            to_add_whole_data_in_soldier_txt_nms();
+            sub_select_of_navy_soldier_nms = yes_or_no(sub_select_of_navy_soldier_nms);
+            if (sub_select_of_navy_soldier_nms == 0)
+            {
+                goto navy_soldiers_menu;
+            }
+        }
+        // RETIRED OFFICERS 4
+        while (sub_select_of_navy_soldier_nms == 4)
+        {   retired_main_menu:
+            int sub_option_of_retired_soldiers;
+            title("RETIRED SOLDIERS MANAGEMENT");
+            to_show_retired_menu_nms(2);
+            sub_option_of_retired_soldiers = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            // to view retired soldiers
+            while(sub_option_of_retired_soldiers == 1)
+            {
+                to_view_retired_soldier_data_nms();
+                sub_option_of_retired_soldiers = yes_or_no(sub_option_of_retired_soldiers);
+                if(sub_option_of_retired_soldiers == 0)
+                {
+                    goto retired_main_menu;
+                }
+            }
+            // to add new retired soldiers
+            while(sub_option_of_retired_soldiers == 2)
+            {
+                int batch_id_index;
+                batch_id_index = id_take_to_fetch_and_id_check_soldiers_nms();
+                to_add_removed_soldier_in_retired_nms(batch_id_index);
+                to_remove_retired_soldier_from_array_nms(batch_id_index);
+                to_add_whole_data_in_soldier_txt_nms();
+                to_add_whole_data_in_retired_soldier_txt_nms();
+                sub_option_of_retired_soldiers = yes_or_no(sub_option_of_retired_soldiers);
+                if(sub_option_of_retired_soldiers == 0)
+                {
+                    goto retired_main_menu;
+                }
+            }
+
+            if(sub_option_of_retired_soldiers == 3)
+            {
+                goto navy_soldiers_menu;
+            }
+            
+        }
+        // MATRYED 5
+        while (sub_select_of_navy_soldier_nms == 5)
+        {
+            matryed:
+            int sub_option_of_matryed_officers;
+            title("HEROES OF OUR NATION");
+            to_show_matryed_menu_nms(2);
+            sub_option_of_matryed_officers = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            if (sub_option_of_matryed_officers == 1)
+            {
+                system("cls");
+                title("HEROES OF OUR NATION");
+                to_view_matryed("matryed/ams_army_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 2)
+            {
+                title("HEROES OF OUR NATION");
+                to_add_matryed("matryed/ams_army_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 3)
+            {
+                goto navy_soldiers_menu;
+            }
+        }
+        // GO TO nms TOP MENU IN 6
