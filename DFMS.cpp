@@ -1694,3 +1694,771 @@ afms_top_menu:
             int check_batch_id;
             int batch_id_idx;
             title("PERSONAL DETAILS OF AIR FORCE SOLDIER");
+            batch_id_idx = id_take_to_fetch_and_id_check_soldiers_afms();
+            check_batch_id = to_show_personal_details_from_air_force_soldiers_array(batch_id_idx);
+            if (check_batch_id == 1)
+            {
+                sub_select_of_air_force_soldier_afms = yes_or_no(sub_select_of_air_force_soldier_afms);
+                if (sub_select_of_air_force_soldier_afms == 0 )
+                {
+                    goto air_force_soldiers_menu;
+                }
+            }
+        }
+        // ADD NEW RECORD 2
+        while (sub_select_of_air_force_soldier_afms == 2)
+        {
+            title("ADD DETAILS OF AIR FORCE SOLDIER");
+            to_show_note("122-");
+            to_add_data_in_soldiers_array_afms();
+            to_add_data_in_soldier_txt_afms();
+            sub_select_of_air_force_soldier_afms = yes_or_no(sub_select_of_air_force_soldier_afms);
+            if (sub_select_of_air_force_soldier_afms == 0 )
+            {
+                goto air_force_soldiers_menu;
+            }
+        }
+        // EDIT RECORD 3
+        while (sub_select_of_air_force_soldier_afms == 3)
+        {
+            int check_batch_idx;
+            int batch_id_index;
+            title("EDIT DETAILS OF AIR FORCE SOLDIER");
+            batch_id_index = id_take_to_fetch_and_id_check_soldiers_afms();
+            to_edit_data_in_soldiers_array_afms(batch_id_index);
+            to_add_whole_data_in_soldier_txt_afms();
+            sub_select_of_air_force_soldier_afms = yes_or_no(sub_select_of_air_force_soldier_afms);
+            if (sub_select_of_air_force_soldier_afms == 0)
+            {
+                goto air_force_soldiers_menu;
+            }
+        }
+        // RETIRED OFFICERS 4
+        while (sub_select_of_air_force_soldier_afms == 4)
+        {   retired_main_menu:
+            int sub_option_of_retired_soldiers;
+            title("RETIRED SOLDIERS MANAGEMENT");
+            to_show_retired_menu_afms(2);
+            sub_option_of_retired_soldiers = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            // to view retired soldiers
+            while(sub_option_of_retired_soldiers == 1)
+            {
+                to_view_retired_soldier_data_afms();
+                sub_option_of_retired_soldiers = yes_or_no(sub_option_of_retired_soldiers);
+                if(sub_option_of_retired_soldiers == 0)
+                {
+                    goto retired_main_menu;
+                }
+            }
+            // to add new retired soldiers
+            while(sub_option_of_retired_soldiers == 2)
+            {
+                int batch_id_index;
+                batch_id_index = id_take_to_fetch_and_id_check_soldiers_afms();
+                to_add_removed_soldier_in_retired_afms(batch_id_index);
+                to_remove_retired_soldier_from_array_afms(batch_id_index);
+                to_add_whole_data_in_soldier_txt_afms();
+                to_add_whole_data_in_retired_soldier_txt_afms();
+                sub_option_of_retired_soldiers = yes_or_no(sub_option_of_retired_soldiers);
+                if(sub_option_of_retired_soldiers == 0)
+                {
+                    goto retired_main_menu;
+                }
+            }
+
+            if(sub_option_of_retired_soldiers == 3)
+            {
+                goto air_force_soldiers_menu;
+            }
+            
+        }
+        // MATRYED 5
+        while (sub_select_of_air_force_soldier_afms == 5)
+        {
+            matryed:
+            int sub_option_of_matryed_officers;
+            title("HEROES OF OUR NATION");
+            to_show_matryed_menu_afms(2);
+            sub_option_of_matryed_officers = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            if (sub_option_of_matryed_officers == 1)
+            {
+                system("cls");
+                title("HEROES OF OUR NATION");
+                to_view_matryed("matryed/ams_army_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 2)
+            {
+                title("HEROES OF OUR NATION");
+                to_add_matryed("matryed/ams_army_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 3)
+            {
+                goto air_force_soldiers_menu;
+            }
+        }
+        // GO TO afms TOP MENU IN 6
+        if (sub_select_of_air_force_soldier_afms == 6)
+        {
+            goto afms_top_menu;
+        }
+        
+    }
+    // AIR FORCE OFFICERS IN afms // complete
+    while (main_selected_option_of_afms == 2)
+    {
+        air_force_officers_menu:
+        title("AIR FORCE TEAM MANAGEMENT SYSTEM");
+        to_show_sub_menu_air_force_officer_afms(7);
+        sub_select_of_air_force_officer_afms = selecting_function(columns_of_screen / 3 + 10, 12,7);
+        // View Personal details of Officers 1
+        while (sub_select_of_air_force_officer_afms == 1)
+        {
+            int check_batch_id;
+            int batch_id_idx;
+            title("PERSONAL DETAILS OF AIR FORCE OFFICER");
+            batch_id_idx = id_take_to_fetch_and_id_check_officer_afms();
+            check_batch_id = to_show_personal_details_from_air_force_officer_array(batch_id_idx);
+            if (check_batch_id == 1)
+            {
+                sub_select_of_air_force_officer_afms = yes_or_no(sub_select_of_air_force_officer_afms);
+                if (sub_select_of_air_force_officer_afms == 0 )
+                {
+                    goto air_force_officers_menu;
+                }
+            }
+        }
+         // ADD NEW RECORD 2
+        while (sub_select_of_air_force_officer_afms == 2)
+        {
+            title("ADD DETAILS OF AIR FORCE OFFICER");
+            to_show_note("EAG-");
+            to_add_data_in_officer_array_afms();
+            to_add_data_in_officer_txt_afms();
+            sub_select_of_air_force_officer_afms = yes_or_no(sub_select_of_air_force_officer_afms);
+            if (sub_select_of_air_force_officer_afms == 0 )
+            {
+                goto air_force_officers_menu;
+            }
+        }
+        // EDIT RECORD 3
+        while (sub_select_of_air_force_officer_afms == 3)
+        {
+            int check_batch_idx;
+            int batch_id_index;
+            title("EDIT DETAILS OF AIR FORCE SOLDIER");
+            batch_id_index = id_take_to_fetch_and_id_check_officer_afms();
+            to_edit_data_in_officer_array_afms(batch_id_index);
+            to_add_whole_data_in_officer_txt_afms();
+            sub_select_of_air_force_officer_afms = yes_or_no(sub_select_of_air_force_officer_afms);
+            if (sub_select_of_air_force_officer_afms == 0)
+            {
+                goto air_force_officers_menu;
+            }
+        }
+        // RETIRED OFFICERS 4
+        while (sub_select_of_air_force_officer_afms == 4)
+        {   retired_main_menu_officer:
+            int sub_option_of_retired_officer;
+            title("RETIRED OFFICERS MANAGEMENT");
+            to_show_retired_menu_afms(2);
+            sub_option_of_retired_officer = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            // to view retired soldiers
+            while(sub_option_of_retired_officer == 1)
+            {
+                to_view_retired_officer_data_afms();
+                sub_option_of_retired_officer = yes_or_no(sub_option_of_retired_officer);
+                if(sub_option_of_retired_officer == 0)
+                {
+                    goto retired_main_menu_officer;
+                }
+            }
+            // to add new retired soldiers
+            while(sub_option_of_retired_officer == 2)
+            {
+                int batch_id_index;
+                batch_id_index = id_take_to_fetch_and_id_check_officer_afms();
+                to_add_removed_officer_in_retired_afms(batch_id_index);
+                to_remove_retired_officer_from_array_afms(batch_id_index);
+                to_add_whole_data_in_officer_txt_afms();
+                to_add_whole_data_in_retired_officer_txt_afms();
+                sub_option_of_retired_officer = yes_or_no(sub_option_of_retired_officer);
+                if(sub_option_of_retired_officer == 0)
+                {
+                    goto retired_main_menu_officer;
+                }
+            }
+            if(sub_option_of_retired_officer == 3)
+            {
+                goto air_force_officers_menu;
+            }
+            
+        }
+        // MATRYED 5
+        while (sub_select_of_air_force_officer_afms == 5)
+        {
+            matryed_officer:
+            int sub_option_of_matryed_officers;
+            title("HEROES OF OUR NATION");
+            to_show_matryed_menu_afms(2);
+            sub_option_of_matryed_officers = selecting_function(columns_of_screen / 3 + 10, 17,2);
+            if (sub_option_of_matryed_officers == 1)
+            {
+                system("cls");
+                title("HEROES OF OUR NATION");
+                to_view_matryed("matryed/afms_air_force_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed_officer;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 2)
+            {
+                title("HEROES OF OUR NATION");
+                to_add_matryed("matryed/afms_air_force_soldiers_matryed.txt");
+                sub_option_of_matryed_officers = yes_or_no(sub_option_of_matryed_officers);
+                if(sub_option_of_matryed_officers == 0)
+                {
+                    goto matryed_officer;
+                }
+            }
+            else if (sub_option_of_matryed_officers == 3)
+            {
+                goto air_force_officers_menu;
+            }
+        }  
+        // Officers in Provience 6
+        while (sub_select_of_air_force_officer_afms == 6)
+        {
+            string prov; // provience
+            int count_officers = 0;
+            prov = to_take_provience();
+            count_officers = to_see_data_from_afms_officer_arrray(3,prov);
+            sub_select_of_air_force_officer_afms = yes_or_no(sub_select_of_air_force_officer_afms);
+            if(sub_select_of_air_force_officer_afms == 0)
+                {
+                    goto air_force_officers_menu;
+                }
+        }
+        // Soldiers under Officers 7
+        while (sub_select_of_air_force_officer_afms == 7)
+        {   
+            int batch_id_index;
+            string check_batch_id;
+            title("SOLDIERS UNDER THE OFFICER");
+            soldier_under_officers_afms();
+            batch_id_index = id_take_to_fetch_and_id_check_officer_afms();
+            soldier_under_officer_view_afms(batch_id_index);
+            sub_select_of_air_force_officer_afms = yes_or_no(sub_select_of_air_force_officer_afms);
+            if(sub_select_of_air_force_officer_afms == 0)
+            {
+                goto air_force_officers_menu;
+            }
+
+        }
+        // GO TO AGAIN LOG IN 8
+        while (sub_select_of_air_force_officer_afms == 8)
+        {
+            goto afms_top_menu;
+        }
+    }
+    // AIR FORCE INSTRUMENTS // COMPLETE
+    while (main_selected_option_of_afms == 3)
+    {
+        sub_menu_instruments:
+        int sub_of_sub_selected_instruments;
+        title("AIR FORCE TEAM MANAGEMENT SYSTEM");
+        to_show_sub_menu_air_force_instruments_afms(5);
+        sub_select_of_air_force_instruments_afms = selecting_function(columns_of_screen / 3 + 10, 12,5);
+        // VIEW INSTRUMENTS 1
+        while (sub_select_of_air_force_instruments_afms == 1)
+        {   
+            instrument_stayer:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_air_force_instruments_afms(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+            // air_craft
+            while (sub_of_sub_selected_instruments == 1)
+            {
+                to_show_air_craft_details_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // Weapons
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                
+                to_show_weapons_details_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // missiles
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_show_missilies_details_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // planess
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_show_planes_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // atomic trackers
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_show_trackers_details();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer;
+                }
+            }
+            // back
+            while (sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        // Add INSTRUMENTS
+        while (sub_select_of_air_force_instruments_afms == 2)
+        {
+            INS_PLACE_2:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_air_force_instruments_afms(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+            while (sub_of_sub_selected_instruments == 1)
+            {
+                to_show_air_craft_details_air_force();
+                to_add_data_in_array_air_craft_air_force();
+                to_add_data_of_air_craft_in_txt_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // Weapons
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                
+                to_show_weapons_details_air_force();
+                to_add_data_in_array_weapons_air_force();
+                to_add_data_of_weapons_in_txt_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // missiles
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_show_missilies_details_air_force();
+                to_add_data_in_array_missilies_air_force();
+                to_add_data_of_missilies_in_txt_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // planess
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_show_planes_details();
+                to_add_data_in_array_planes();
+                to_add_data_of_planes_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // atomic trackers
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_show_trackers_details();
+                to_add_data_in_array_trackers();
+                to_add_data_of_trackers_in_txt();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto INS_PLACE_2;
+                }
+            }
+            // back
+            while (sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+            
+        }
+        // edit instruments
+        while(sub_select_of_air_force_instruments_afms == 3)
+        {
+            instrument_stayer_edit:
+            int sub_of_sub_selected_instruments;
+            title("INSTRUMENTS MANAGEMENT SYSTEM");
+            to_show_sub_detail_view_air_force_instruments_afms(5);
+            sub_of_sub_selected_instruments = selecting_function(columns_of_screen / 3 + 10, 12,5);
+               while (sub_of_sub_selected_instruments == 1)
+            {
+                to_edit_instrument_record_air_craft();
+                to_add_whole_data_in_txt_air_craft();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 2)
+            {
+                to_edit_instrument_record_weapons_air_force();
+                to_add_whole_data_in_txt_weapons_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 3)
+            {
+                to_edit_instrument_record_missilies_air_force();
+                to_add_whole_data_in_txt_missilies_air_force();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 4)
+            {
+                to_edit_instrument_record_planes();
+                to_add_whole_data_in_txt_planes();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while (sub_of_sub_selected_instruments == 5)
+            {
+                to_edit_instrument_record_trackers();
+                to_add_whole_data_in_txt_trackers();
+                sub_of_sub_selected_instruments = yes_or_no(sub_of_sub_selected_instruments);
+                if(sub_of_sub_selected_instruments == 0)
+                {
+                    goto instrument_stayer_edit;
+                }
+            }
+            while(sub_of_sub_selected_instruments == 6)
+            {
+                goto sub_menu_instruments;
+            }
+            
+        }
+         // graph
+        while (sub_select_of_air_force_instruments_afms == 4)
+        {
+            system("cls");
+            title("GRAPH OF BUDGET");
+            graph_afms();
+            Sleep(5000);
+            sub_select_of_air_force_instruments_afms = yes_or_no(sub_select_of_air_force_instruments_afms);
+            if(sub_select_of_air_force_instruments_afms == 0)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        // Budget Calculate
+        while (sub_select_of_air_force_instruments_afms == 5)
+        {
+            float total;
+            title("THE AIR FORCE BUDGET");
+            total_afms_budget();
+            sub_select_of_air_force_instruments_afms = yes_or_no(sub_select_of_air_force_instruments_afms);
+            if(sub_select_of_air_force_instruments_afms == 0)
+            {
+                goto sub_menu_instruments;
+            }
+        }
+        //Back
+        while (sub_selected_instruments == 6 || sub_select_of_air_force_instruments_afms == 6)
+        {
+            goto afms_top_menu;
+        }
+    }
+    // CROPS
+    while (main_selected_option_of_afms == 4)
+    {
+        int sub_select_of_crops_afms;
+        menu_crops:
+        title("CROPS MANAGEMENT SYSTEM");
+        to_show_sub_menu_air_force_crops_afms(2);
+        sub_select_of_crops_afms = selecting_function(columns_of_screen / 3 + 10,12,2);
+        while(sub_select_of_crops_afms == 1)
+        {
+            to_show_nav_khor();
+            sub_select_of_crops_afms = yes_or_no(sub_select_of_crops_afms);
+            if(sub_select_of_crops_afms == 0)
+            {
+                goto menu_crops;
+            }
+        }
+        while(sub_select_of_crops_afms == 2)
+        {
+            to_show_him_khor();
+            sub_select_of_crops_afms = yes_or_no(sub_select_of_crops_afms);
+            if(sub_select_of_crops_afms == 0)
+            {
+                goto menu_crops;
+            }
+        }
+        if (sub_select_of_crops_afms ==  3)
+        {
+            goto afms_top_menu;
+        }
+    }
+    // Report of work
+    while (main_selected_option_of_afms == 5)
+    {
+        
+        to_fetch_feedback();
+        main_selected_option_of_afms = yes_or_no(main_selected_option_of_afms);
+        if (main_selected_option_of_afms == 0)
+        {
+            goto afms_top_menu;
+        }
+    }
+}
+// 3. AIR FORCE MANAGEMENT SYSTEM ENDED
+// 4. ARMY OFFICERS MANAGEMENT SYSTEM
+int army_officer_management_system(int checker_of_user_domain)
+{
+	int main_selector, sub_select_of_army_officer_aoms;
+aoms_main_menu:
+	title("ARMY OFFICER MANAGEMENT");
+	to_show_main_menu_aoms(5);
+	main_selector = selecting_function(columns_of_screen / 3 + 10,12,5);
+		// PERSONAL DETAILS
+		while (main_selector == 1)
+		{
+			int check_batch_id;
+			string batch_id;
+			title("PERSONAL DETAILS OF ARMY OFFICER");
+			to_show_personal_details_from_aoms();
+            main_selector = yes_or_no(main_selector);
+            if(main_selector == 0)
+            {
+                goto aoms_main_menu;
+            }
+		}
+		// SOLDIERS DETAILS
+		while (main_selector == 2)
+		{
+           int check_batch_id;
+            int batch_id_idx;
+            title("PERSONAL DETAILS OF ARMY SOLDIER");
+            batch_id_idx = id_take_to_fetch_and_id_check_soldiers_ams();
+            check_batch_id = to_show_personal_details_from_soldiers_array(batch_id_idx);
+            if (check_batch_id == 1)
+            {
+                main_selector = yes_or_no(main_selector);
+                if (main_selector == 0 )
+                {
+                    goto aoms_main_menu;
+                }
+            } 
+		}
+		// Candidates Select
+		while (main_selector == 3)
+		{
+			title("ISSB SELECTOR");
+			to_show_personal_selector_details_options_aoms(2);
+            sub_select_of_army_officer_aoms = selecting_function(columns_of_screen / 3 ,12,2);
+			while (sub_select_of_army_officer_aoms == 1)
+			{
+					title("GTO GROUP TAKS");
+                    to_get_candidates_batch_id();
+                    to_get_candidate_marks_gto();
+                    to_add_data_in_txt_feedback_gto();
+                sub_select_of_army_officer_aoms = yes_or_no(sub_select_of_army_officer_aoms);
+			    if (sub_select_of_army_officer_aoms == 0)
+			    {
+				goto aoms_main_menu;
+			    }
+			}
+            // psychologist_tasks
+			while (sub_select_of_army_officer_aoms == 2)
+			{
+				
+					title("PSYCOLOGYIST TASKS OF GROUP");
+                    to_get_candidates_batch_id();
+					to_get_candidate_marks_psychologist();
+                    to_add_data_in_txt_feedback_psychologist();
+                    sub_select_of_army_officer_aoms = yes_or_no(sub_select_of_army_officer_aoms);
+			    if (sub_select_of_army_officer_aoms == 0)
+			    {
+				goto aoms_main_menu;
+			    }
+			}
+			if (sub_select_of_army_officer_aoms == 3)
+			{
+				goto aoms_main_menu;
+			}
+		}
+		// WAR IDEA
+		while (main_selector == 4)
+		{
+			title("WAR IDEA SYSTEM");
+			to_input_war_ideas();
+            main_selector = yes_or_no(main_selector);
+			if (main_selector == 0)
+			{
+				goto aoms_main_menu;
+			}
+		}
+		// CODE BY CROPS
+		while (main_selector == 5)
+		{
+			main_selector = code_by_corp();
+			if (main_selector == 0)
+			{
+				goto aoms_main_menu;
+			}
+		}
+        if(main_selector == 6)
+        {
+            return 0;
+        }
+
+	
+}
+// 4. ARMY OFFICERS MANAGEMENT SYSTEM END
+// 5. NAVY OFFICERS MANAGEMENT SYSTEM
+int navy_officer_management_system(int checker_of_user_domain)
+{
+	int main_selector, sub_select_of_army_officer_aoms;
+	noms_main_menu:
+	title("NAVY OFFICER MANAGEMENT");
+	to_show_main_menu_aoms(5);
+	main_selector = selecting_function(columns_of_screen / 3 + 10,12,5);
+		// PERSONAL DETAILS
+		while (main_selector == 1)
+		{
+			int check_batch_id;
+			string batch_id;
+			title("PERSONAL DETAILS OF NAVY OFFICER");
+			to_show_personal_details_from_noms();
+            main_selector = yes_or_no(main_selector);
+            if(main_selector == 0)
+            {
+                goto noms_main_menu;
+            }
+		}
+		// SOLDIERS DETAILS
+		while (main_selector == 2)
+		{
+           int check_batch_id;
+            int batch_id_idx;
+            title("PERSONAL DETAILS OF NAVY SOLDIER");
+            batch_id_idx = id_take_to_fetch_and_id_check_soldiers_nms();
+            check_batch_id = to_show_personal_details_from_navy_soldiers_array(batch_id_idx);
+            if (check_batch_id == 1)
+            {
+                main_selector = yes_or_no(main_selector);
+                if (main_selector == 0 )
+                {
+                    goto noms_main_menu;
+                }
+            }
+		}
+		// Candidates Select
+		while (main_selector == 3)
+		{
+			title("ISSB SELECTOR");
+			to_show_personal_selector_details_options_aoms(2);
+            sub_select_of_army_officer_aoms = selecting_function(columns_of_screen / 3 ,12,2);
+			while (sub_select_of_army_officer_aoms == 1)
+			{
+					title("GTO GROUP TAKS");
+                    to_get_candidates_batch_id();
+                    to_get_candidate_marks_gto();
+                    to_add_data_in_txt_feedback_gto();
+                sub_select_of_army_officer_aoms = yes_or_no(sub_select_of_army_officer_aoms);
+			    if (sub_select_of_army_officer_aoms == 0)
+			    {
+				goto noms_main_menu;
+			    }
+			}
+            // psychologist_tasks
+			while (sub_select_of_army_officer_aoms == 2)
+			{
+				
+					title("PSYCOLOGYIST TASKS OF GROUP");
+                    to_get_candidates_batch_id();
+					to_get_candidate_marks_psychologist();
+                    to_add_data_in_txt_feedback_psychologist();
+                    sub_select_of_army_officer_aoms = yes_or_no(sub_select_of_army_officer_aoms);
+			    if (sub_select_of_army_officer_aoms == 0)
+			    {
+				goto noms_main_menu;
+			    }
+			}
+			if (sub_select_of_army_officer_aoms == 3)
+			{
+				goto noms_main_menu;
+			}
+		}
+		// WAR IDEA
+		while (main_selector == 4)
+		{
+			title("WAR IDEA SYSTEM");
+			to_input_war_ideas();
+            main_selector = yes_or_no(main_selector);
+			if (main_selector == 0)
+			{
+				goto noms_main_menu;
+			}
+		}
+		// CODE BY CROPS
+		while (main_selector == 5)
+		{
+			main_selector = code_by_corp();
+			if (main_selector == 0)
+			{
+				goto noms_main_menu;
+			}
+		}
+        if(main_selector == 6)
+        {
+            return 0;
+        }
+
