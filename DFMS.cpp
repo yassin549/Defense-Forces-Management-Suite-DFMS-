@@ -2462,3 +2462,803 @@ int navy_officer_management_system(int checker_of_user_domain)
             return 0;
         }
 
+            retired_army_officer_array[5][index_col_of_array] = retired_army_officer_array[5][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // rank
+        {
+            retired_army_officer_array[6][index_col_of_array] = retired_army_officer_array[6][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // password
+        {
+            retired_army_officer_array[7][index_col_of_array] = retired_army_officer_array[7][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        index_col_of_array++;
+    }
+    file.close();
+    retired_army_officer_count = index_col_of_array;
+    return 1;
+}
+// to fetch retired soldier data from txt to array nms
+int fetch_nms_retired_officers_data_from_txt_to_array()
+{
+    int index_col_of_array = retired_navy_officer_count;
+    int i = 0;
+    string file_path = "retired/nms_retired_officers.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') // get batch_ id
+        {
+            retired_navy_officer_array[0][index_col_of_array] = retired_navy_officer_array[0][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // name
+        {
+            retired_navy_officer_array[1][index_col_of_array] = retired_navy_officer_array[1][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // f name
+        {
+            retired_navy_officer_array[2][index_col_of_array] = retired_navy_officer_array[2][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // provience
+        {
+            retired_navy_officer_array[3][index_col_of_array] = retired_navy_officer_array[3][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // salary
+        {
+            retired_navy_officer_array[4][index_col_of_array] = retired_navy_officer_array[4][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // age
+        {
+            retired_navy_officer_array[5][index_col_of_array] = retired_navy_officer_array[5][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // rank
+        {
+            retired_navy_officer_array[6][index_col_of_array] = retired_navy_officer_array[6][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // password
+        {
+            retired_navy_officer_array[7][index_col_of_array] = retired_navy_officer_array[7][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        index_col_of_array++;
+    }
+    file.close();
+    retired_navy_officer_count = index_col_of_array;
+    return 1;
+}
+// to fetch retired soldier data from txt to array afms
+int fetch_afms_retired_officers_data_from_txt_to_array()
+{
+    int index_col_of_array = retired_air_force_officer_count;
+    int i = 0;
+    string file_path = "retired/afms_retired_officers.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') // get batch_ id
+        {
+            retired_air_force_officer_array[0][index_col_of_array] = retired_air_force_officer_array[0][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // name
+        {
+            retired_air_force_officer_array[1][index_col_of_array] = retired_air_force_officer_array[1][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // f name
+        {
+            retired_air_force_officer_array[2][index_col_of_array] = retired_air_force_officer_array[2][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // provience
+        {
+            retired_air_force_officer_array[3][index_col_of_array] = retired_air_force_officer_array[3][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // salary
+        {
+            retired_air_force_officer_array[4][index_col_of_array] = retired_air_force_officer_array[4][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // age
+        {
+            retired_air_force_officer_array[5][index_col_of_array] = retired_air_force_officer_array[5][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // rank
+        {
+            retired_air_force_officer_array[6][index_col_of_array] = retired_air_force_officer_array[6][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // password
+        {
+            retired_air_force_officer_array[7][index_col_of_array] = retired_air_force_officer_array[7][index_col_of_array] + line[i];
+            i++;
+        }
+        i++;
+        index_col_of_array++;
+    }
+    file.close();
+    retired_air_force_officer_count = index_col_of_array;
+    return 1;
+}
+// to fetch ams carriers
+int fetch_ams_carriers()
+{
+    int index_row_of_array = count_ams_carriers;
+    int i = 0;
+    string file_path = "instruments/ams_carriers.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            ams_carriers[index_row_of_array][0] = ams_carriers[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            ams_carriers[index_row_of_array][1] = ams_carriers[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            ams_carriers[index_row_of_array][2] = ams_carriers[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            ams_carriers[index_row_of_array][3] = ams_carriers[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            ams_carriers[index_row_of_array][4] = ams_carriers[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_ams_carriers = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch ams weapons
+int fetch_ams_weapons()
+{
+    int index_row_of_array = count_ams_weapons;
+    int i = 0;
+    string file_path = "instruments/ams_weapons.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            ams_weapons[index_row_of_array][0] = ams_weapons[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            ams_weapons[index_row_of_array][1] = ams_weapons[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            ams_weapons[index_row_of_array][2] = ams_weapons[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            ams_weapons[index_row_of_array][3] = ams_weapons[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            ams_weapons[index_row_of_array][4] = ams_weapons[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_ams_weapons = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch ams tank
+int fetch_ams_tank()
+{
+    int index_row_of_array = count_ams_tank;
+    int i = 0;
+    string file_path = "instruments/ams_tank.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            ams_tank[index_row_of_array][0] = ams_tank[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            ams_tank[index_row_of_array][1] = ams_tank[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            ams_tank[index_row_of_array][2] = ams_tank[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            ams_tank[index_row_of_array][3] = ams_tank[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            ams_tank[index_row_of_array][4] = ams_tank[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_ams_tank = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch ams missilies
+int fetch_ams_missilies()
+{
+    int index_row_of_array = count_ams_missilies;
+    int i = 0;
+    string file_path = "instruments/ams_missilies.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            ams_missilies[index_row_of_array][0] = ams_missilies[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            ams_missilies[index_row_of_array][1] = ams_missilies[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            ams_missilies[index_row_of_array][2] = ams_missilies[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            ams_missilies[index_row_of_array][3] = ams_missilies[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            ams_missilies[index_row_of_array][4] = ams_missilies[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_ams_missilies = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch ams missilies
+int fetch_ams_bombs()
+{
+    int index_row_of_array = count_ams_atomic_bombs;
+    int i = 0;
+    string file_path = "instruments/ams_bombs.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            ams_atomic_bombs[index_row_of_array][0] = ams_atomic_bombs[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            ams_atomic_bombs[index_row_of_array][1] = ams_atomic_bombs[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            ams_atomic_bombs[index_row_of_array][2] = ams_atomic_bombs[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            ams_atomic_bombs[index_row_of_array][3] = ams_atomic_bombs[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            ams_atomic_bombs[index_row_of_array][4] = ams_atomic_bombs[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_ams_atomic_bombs = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch nms air craft
+int fetch_nms_air_craft()
+{
+    int index_row_of_array = count_nms_air_craft;
+    int i = 0;
+    string file_path = "instruments/nms_air_craft.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            nms_air_craft[index_row_of_array][0] = nms_air_craft[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            nms_air_craft[index_row_of_array][1] = nms_air_craft[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            nms_air_craft[index_row_of_array][2] = nms_air_craft[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            nms_air_craft[index_row_of_array][3] = nms_air_craft[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            nms_air_craft[index_row_of_array][4] = nms_air_craft[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_nms_air_craft = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch nms weapons
+int fetch_nms_weapons()
+{
+    int index_row_of_array = count_nms_weapons;
+    int i = 0;
+    string file_path = "instruments/nms_weapons.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            nms_weapons[index_row_of_array][0] = nms_weapons[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            nms_weapons[index_row_of_array][1] = nms_weapons[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            nms_weapons[index_row_of_array][2] = nms_weapons[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            nms_weapons[index_row_of_array][3] = nms_weapons[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            nms_weapons[index_row_of_array][4] = nms_weapons[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_nms_weapons = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch nms missilies
+int fetch_nms_missilies()
+{
+    int index_row_of_array = count_nms_missilies;
+    int i = 0;
+    string file_path = "instruments/nms_missilies.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            nms_missilies[index_row_of_array][0] = nms_missilies[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            nms_missilies[index_row_of_array][1] = nms_missilies[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            nms_missilies[index_row_of_array][2] = nms_missilies[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            nms_missilies[index_row_of_array][3] = nms_missilies[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            nms_missilies[index_row_of_array][4] = nms_missilies[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_nms_missilies = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch nms missilies
+int fetch_nms_subarine()
+{
+    int index_row_of_array = count_nms_subarine;
+    int i = 0;
+    string file_path = "instruments/nms_subarine.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            nms_subarine[index_row_of_array][0] = nms_subarine[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            nms_subarine[index_row_of_array][1] = nms_subarine[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            nms_subarine[index_row_of_array][2] = nms_subarine[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            nms_subarine[index_row_of_array][3] = nms_subarine[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            nms_subarine[index_row_of_array][4] = nms_subarine[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_nms_subarine = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch nms missilies
+int fetch_nms_surface_ships()
+{
+    int index_row_of_array = count_nms_surface_ships;
+    int i = 0;
+    string file_path = "instruments/nms_surface_ship.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            nms_surface_ships[index_row_of_array][0] = nms_surface_ships[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            nms_surface_ships[index_row_of_array][1] = nms_surface_ships[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            nms_surface_ships[index_row_of_array][2] = nms_surface_ships[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            nms_surface_ships[index_row_of_array][3] = nms_surface_ships[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            nms_surface_ships[index_row_of_array][4] = nms_surface_ships[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_nms_surface_ships = index_row_of_array;
+    file.close();
+    return 1;
+}
+
+// to fetch afms air craft
+int fetch_afms_air_craft()
+{
+    int index_row_of_array = count_afms_air_craft;
+    int i = 0;
+    string file_path = "instruments/afms_air_craft.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            afms_air_craft[index_row_of_array][0] = afms_air_craft[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            afms_air_craft[index_row_of_array][1] = afms_air_craft[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            afms_air_craft[index_row_of_array][2] = afms_air_craft[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            afms_air_craft[index_row_of_array][3] = afms_air_craft[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            afms_air_craft[index_row_of_array][4] = afms_air_craft[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_afms_air_craft = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch afms weapons
+int fetch_afms_weapons()
+{
+    int index_row_of_array = count_afms_weapons;
+    int i = 0;
+    string file_path = "instruments/afms_weapons.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            afms_weapons[index_row_of_array][0] = afms_weapons[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            afms_weapons[index_row_of_array][1] = afms_weapons[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            afms_weapons[index_row_of_array][2] = afms_weapons[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            afms_weapons[index_row_of_array][3] = afms_weapons[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            afms_weapons[index_row_of_array][4] = afms_weapons[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_afms_weapons = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch afms missilies
+int fetch_afms_missilies()
+{
+    int index_row_of_array = count_afms_missilies;
+    int i = 0;
+    string file_path = "instruments/afms_missilies.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            afms_missilies[index_row_of_array][0] = afms_missilies[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            afms_missilies[index_row_of_array][1] = afms_missilies[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            afms_missilies[index_row_of_array][2] = afms_missilies[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            afms_missilies[index_row_of_array][3] = afms_missilies[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            afms_missilies[index_row_of_array][4] = afms_missilies[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_afms_missilies = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch afms missilies
+int fetch_afms_planes()
+{
+    int index_row_of_array = count_afms_planes;
+    int i = 0;
+    string file_path = "instruments/afms_planes.txt";
