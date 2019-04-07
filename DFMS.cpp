@@ -3262,3 +3262,579 @@ int fetch_afms_planes()
     int index_row_of_array = count_afms_planes;
     int i = 0;
     string file_path = "instruments/afms_planes.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            afms_planes[index_row_of_array][0] = afms_planes[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            afms_planes[index_row_of_array][1] = afms_planes[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            afms_planes[index_row_of_array][2] = afms_planes[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            afms_planes[index_row_of_array][3] = afms_planes[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            afms_planes[index_row_of_array][4] = afms_planes[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_afms_planes = index_row_of_array;
+    file.close();
+    return 1;
+}
+// to fetch afms missilies
+int fetch_afms_trackers()
+{
+    int index_row_of_array = count_afms_trackers;
+    int i = 0;
+    string file_path = "instruments/afms_trackers.txt";
+    string line;
+    ifstream file;
+    file.open(file_path, ios::in);
+    while (!file.eof())
+    {
+        getline(file, line);
+        i = 0;
+        while (line[i] != ',') //name
+        {
+            afms_trackers[index_row_of_array][0] = afms_trackers[index_row_of_array][0] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // range
+        {
+            afms_trackers[index_row_of_array][1] = afms_trackers[index_row_of_array][1] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // price
+        {
+            afms_trackers[index_row_of_array][2] = afms_trackers[index_row_of_array][2] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // stock
+        {
+            afms_trackers[index_row_of_array][3] = afms_trackers[index_row_of_array][3] + line[i];
+            i++;
+        }
+        i++;
+        while (line[i] != ',') // used
+        {
+            afms_trackers[index_row_of_array][4] = afms_trackers[index_row_of_array][4] + line[i];
+            i++;
+        }
+        i++;
+        index_row_of_array++;
+    }
+    count_afms_trackers = index_row_of_array;
+    file.close();
+    return 1;
+}
+
+
+
+
+
+//                              Yes or No option
+int yes_or_no(int perior_option)
+{
+    string select_option;
+select:
+    gotoxy(columns_to_fit + 15, 10);
+    cout << "\33[31m"
+         << "IS YOU WANT TO REPEAT THAT TASK "
+         << "\33[34m"
+         << "(" << perior_option << " / "
+         << "\33[34m"
+         << "0): ";
+    gotoxy(columns_to_fit + 56, 10);
+    cout << "                       ";
+    gotoxy(columns_to_fit + 56, 10);
+    cin >> select_option;
+    if (select_option != to_string(perior_option) && select_option != to_string(0))
+    {
+        goto select;
+    }
+    return stoi(select_option);
+}
+
+//                                      LOGIN AND DESIG PHASE
+// TO MANAGE SCREEN SIZE
+int screen_size()
+{
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columns_of_screen = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    rows_of_screen = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+    rows_to_fit = rows_of_screen / 4;
+    columns_to_fit = columns_of_screen / 4;
+    return 0;
+}
+// TAKE USER ID FROM DIFFERENT FUNCTINS THEN CHECK IT AND RETURN NUMBER
+int user_id()
+{
+    int to_count_user_word;
+    string user, pass;
+in_case_wrong:
+    system("cls");
+    first_page_title();
+    home_page();
+    user = take_username();
+    pass = take_password();
+    to_count_user_word = user.length();
+    if (ams_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 1;
+    }
+    if (nms_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 2;
+    }
+    if (afms_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 3;
+    }
+    if (army_officer_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 4;
+    }
+    
+    if (navy_officer_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 5;
+    }
+    if (air_force_officer_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 6;
+    }
+    if (army_soldier_user_password_login(user, pass))
+    {
+        batch_id_security = user;
+        return 7;
+    }
+    else
+    {
+        gotoxy(columns_of_screen / 2, rows_of_screen - 3);
+        cout << "INVALID !";
+        Sleep(3000);
+        goto in_case_wrong;
+    }
+}
+// take user id
+// AMS LOGIN
+bool ams_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < army_soldier_count; i++)
+    {
+        if (user == army_officer_array[0][i] && password == "AMS18082")
+        {
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// NMS LOGIN
+bool nms_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < army_soldier_count; i++)
+    {
+        if (user == navy_officer_array[0][i] && password == "NMS18082")
+        {
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// AFMS LOGIN
+bool afms_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < army_soldier_count; i++)
+    {
+        if (user == air_force_officer_array[0][i] && password == "AFMS18082")
+        {
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// asms login
+bool army_soldier_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < army_soldier_count; i++)
+    {
+        if (user == army_soldier_array[0][i] && password == army_soldier_array[7][i])
+        {
+            batch_id_index_security = i;
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// aRMY OFFICERms login
+bool army_officer_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < army_officer_count; i++)
+    {
+        if (user == army_officer_array[0][i] && password == army_officer_array[7][i])
+        {
+
+            batch_id_index_security = i;
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// NAVY LOGIN
+bool navy_officer_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < navy_officer_count; i++)
+    {
+        if (user == navy_officer_array[0][i] && password == navy_officer_array[7][i])
+        {
+
+            batch_id_index_security = i;
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+// air force
+bool air_force_officer_user_password_login(string user, string password)
+{
+    bool checker = false;
+    for (int i = 0; i < air_force_officer_count; i++)
+    {
+        if (user == air_force_officer_array[0][i] && password == air_force_officer_array[7][i])
+        {
+
+            batch_id_index_security = i;
+            checker = true;
+            return checker;
+        }
+    }
+    return checker;
+}
+
+// first page title
+void first_page_title()
+{
+    int columns;
+    print_start_box(5, columns_of_screen);
+    to_print_in_title("PAKISTAN FORCES MANAGEMENT SYSTEM");
+    columns = columns_to_fit / 7;
+    gotoxy(columns, 6);
+    cout << "\033[32m"
+         << "..../\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\")=======||||||D		              DIE IN THE PATH OF SUCCESS                       (|||||=======/\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\")..." << endl;
+    gotoxy(columns, 7);
+    cout << "\033[32m"
+         << "/\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\\                                                                                           /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\\" << endl;
+    gotoxy(columns, 8);
+    cout << "\033[32m"
+         << "\\@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/                                                                                           \\@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/" << endl
+         << endl
+         << endl;
+}
+// PRINT START BOX
+void print_start_box(int rows, int columns)
+{
+    for (int i = 1; i <= rows; ++i)
+    {
+        for (int j = 1; j <= columns; ++j)
+        {
+            if (i == 1 || i == rows || j == 1 || j == columns)
+            {
+                cout << "#";
+            }
+            else
+            {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+}
+// TITLE ON EVERY PAGE AND USE TO PRINT TITLE FUNCTION IN IT
+void title(string content_inside_title)
+{
+    system("cls");
+    print_start_box(5, columns_of_screen - 2);
+    gotoxy((columns_of_screen / 3) - 5, 6);
+    cout << "\033[31m"
+         << "And when you judge between people, judge with justice. (Al Quran)"
+         << "\033[37m" << endl;
+    gotoxy((columns_of_screen / 3) - 5, 7);
+    cout << "_________________________________________________________________ " << endl;
+
+    gotoxy((columns_of_screen / 3) - 5, rows_of_screen - 2);
+    cout << "_________________________________________________________________" << endl;
+    to_print_in_title(content_inside_title);
+} // GOTOXY
+// GOTOXY
+void gotoxy(int x, int y)
+{
+    COORD coordinates;
+    coordinates.X = x;
+    coordinates.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
+}
+// GETCHAR
+char getCharAtxy(short int x, short int y)
+{
+    CHAR_INFO ci;
+    COORD xy = {0, 0};
+    SMALL_RECT rect = {x, y, x, y};
+    COORD coordBufsize;
+    coordBufsize.X = 1;
+    coordBufsize.Y = 1;
+    return ReadConsoleOutput(GetStdHandle(STD_OUTPUT_HANDLE), &ci, coordBufsize, xy, &rect) ? ci.Char.AsciiChar : ' ';
+}
+// TAKE USERNAME
+string take_username()
+{
+    string user;
+    gotoxy(columns_to_fit + 15, 17);
+    cin >> user;
+    return user;
+}
+// take password
+string take_password()
+{
+    string pass;
+    gotoxy(columns_to_fit + 15, 23);
+    cin >> pass;
+    return pass;
+}
+// print content_inside_title
+void to_print_in_title(string content_inside_title)
+{
+    gotoxy(columns_of_screen / 2 - 17, 2);
+    cout << content_inside_title;
+}
+// HOME PAGE THINGS
+void home_page()
+{
+    print_line(columns_to_fit, 14, columns_of_screen - columns_to_fit);
+    print_line(columns_to_fit, 20, columns_of_screen - columns_to_fit);
+    print_line(columns_to_fit, 26, columns_of_screen - columns_to_fit);
+    gotoxy(columns_to_fit, 17);
+    cout << "\33[34m"
+         << "USERNAME: ";
+    gotoxy(columns_to_fit, 23);
+    cout << "\33[34m"
+         << "PASSWORD: ";
+}
+// PRINT LINE
+void print_line(int start_point, int row, int end_point)
+{
+    for (int i = start_point; i <= end_point; i++)
+    {
+        gotoxy(i, row);
+        cout << "*";
+    }
+}
+// show note
+void to_show_note(string text)
+{
+	gotoxy(columns_of_screen/3 + 5, rows_of_screen - 3);
+	cout<<"NOTE EVERY BACTH ID MUST STARTED WITH "<<text;
+}
+// SELECTING THINGS
+int selecting_function(int x, int y, int n)
+{
+    int x_axis = x;
+    int y_axis = y;
+    int option = 1;
+    slecter_horizantel_line(x_axis, y_axis);
+    while (true)
+    {
+        if (GetAsyncKeyState(VK_DOWN) && option <= n)
+        {
+            erase_slecter_horizantel_line(x_axis, y_axis);
+            if (option < n)
+            {
+                y_axis = y_axis + 4;
+                option = option + 1;
+            }
+            slecter_horizantel_line(x_axis, y_axis);
+            Sleep(300);
+            cout << option;
+        }
+        if (GetAsyncKeyState(VK_UP) && option > 1)
+        {
+            erase_slecter_horizantel_line(x_axis, y_axis);
+            y_axis = y_axis - 4;
+            option = option - 1;
+            slecter_horizantel_line(x_axis, y_axis);
+            Sleep(300);
+            cout << option;
+        }
+        if (GetAsyncKeyState(VK_SPACE))
+        {
+            Sleep(50);
+            return option;
+        }
+        if (GetAsyncKeyState(VK_ESCAPE))
+        {
+            Sleep(50);
+            return n + 1;
+        }
+    }
+}
+// LINE use in selecter;
+void slecter_horizantel_line(int x, int y)
+{
+    for (int i = 0; i < 25; i++)
+    {
+        gotoxy(x + i, y);
+        cout << "\33[32m"
+             << "=";
+    }
+}
+// ERase line
+void erase_slecter_horizantel_line(int x, int y)
+{
+    for (int i = 0; i < 25; i++)
+    {
+        gotoxy(x + i, y);
+        cout << "\33[32m"
+             << " ";
+    }
+}
+void invalid_function()
+{
+	gotoxy(columns_of_screen / 2 - 10, rows_of_screen - 5);
+	cout << "INVALID INPUT FROM YOU";
+	Sleep(1000);
+	gotoxy(columns_of_screen / 2 - 10, rows_of_screen - 5);
+	cout << "                                 ";
+}
+
+//                              MENU SHOWER PHASE
+// USER 7
+int to_show_main_menu_asms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << soldiers_main_menu_asms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// to show personal details option and things
+int to_show_personal_details_from_asms()
+{
+    int arr_index = 0;
+    to_show_personal_details_options_asms();
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3 + 30, 15 + i);
+        cout << army_soldier_array[arr_index][batch_id_index_security];
+        arr_index++;
+    }
+    gotoxy(columns_of_screen / 3 + 10, rows_of_screen - 5);
+    cout << "PRESS ANY KEY TO GO BACK";
+    getch();
+    return 1;
+}
+// to show personal details options by asms
+void to_show_personal_details_options_asms()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_asms[details_index];
+        details_index++;
+    }
+}
+// feedback taker
+void feedback()
+{
+    string line;
+    title("FEEDBACK PAGE");
+    fstream file;
+    file.open("feedback_file/feedbackfile.txt", ios::app);
+    cin.ignore();
+    gotoxy(5, 14);
+    getline(cin, line);
+    file << batch_id_security;
+    file << ",";
+    file << line;
+    file << endl;
+    file.close();
+}
+// to calculate salary
+int to_calculate_salary_asms()
+{
+    while (true)
+    {
+        int main_menu_taker = 2;
+    salary:
+        int salary = stoi(army_soldier_array[4][batch_id_index_security]);
+        int bonus[3] = {1000, 5000, 4000};
+        char catagory;
+        float e_day, special_day, total, days_amount;
+        system("cls");
+        print_start_box(5, columns_of_screen);
+        title("SALARY CALCULATOR");
+        gotoxy(columns_to_fit + 10, 16);
+        cout << "ENTER CATAGORY(1.DRIVER , 2.BOARDER , 3.CHEFF): ";
+        gotoxy(columns_to_fit + 60, 16);
+        cin >> catagory;
+        gotoxy(columns_to_fit + 10, 18);
+        cout << "ENTER EXTRA WORKING DAYS: ";
+        gotoxy(columns_to_fit + 50, 18);
+        cin >> e_day;
+        gotoxy(columns_to_fit + 10, 20);
+        cout << "ENTER MOVEMENT(EID, NATIONAL etc): ";
+        gotoxy(columns_to_fit + 50, 20);
+        cin >> special_day;
+        if (catagory == '1')
+        {
+            total = salary + (bonus[0] * special_day) + ((salary / 30) * (e_day));
+        }
