@@ -3838,3 +3838,515 @@ int to_calculate_salary_asms()
         {
             total = salary + (bonus[0] * special_day) + ((salary / 30) * (e_day));
         }
+        else if (catagory == '2')
+        {
+            total = salary + (bonus[1] * special_day) + ((salary / 30) * (e_day));
+        }
+        else if (catagory == '3')
+        {
+            total = salary + (bonus[2] * special_day) + ((salary / 30) * (e_day));
+        }
+        else
+        {
+            goto salary;
+        }
+        gotoxy(columns_of_screen / 2 - columns_to_fit / 2, rows_of_screen - 5);
+        cout << "TOTAL SALARY: " << total;
+        main_menu_taker = yes_or_no(main_menu_taker);
+        if (main_menu_taker == 0)
+        {
+            return 0;
+        }
+    }
+}
+// Validations
+
+// numeric validation
+bool numeric_validation(string word)
+{
+    int count = 0;
+    char number[10] = {'0','1','2','3','4','5','6','7','8','9',};
+    for(int i = 0 ; i < word.length() ; i++)
+    {   
+        for(int j = 0 ; j < 10 ; j++)
+        {
+        if((word[i] == number[j]))
+        {
+            count++;
+        }
+        }
+    }
+    if(count == word.length())
+    {
+        return false;
+    }
+    else
+    {
+    return true;
+    }
+}
+// batch_id validations soldiers
+bool soldiers_batch_id_validations(string word)
+{
+    int count = 0;
+    char number[11] = {'0','1','2','3','4','5','6','7','8','9','-'};
+    for(int i = 0 ; i < word.length() ; i++)
+    {   
+        for(int j = 0 ; j < 11 ; j++)
+        {
+        if((word[i] == number[j]))
+        {
+            count++;
+        }
+        }
+    }
+    if(count == word.length())
+    {
+        return false;
+    }
+    else
+    {
+    return true;
+    }
+}
+// batch_id validations soldiers
+bool officer_batch_id_validations(string word)
+{
+    int count = 0;
+    char number[20] = {'0','1','2','3','4','5','6','7','8','9','-','P','M','I','N','A','V','E','A','G'};
+    
+    for(int i = 0 ; i < word.length() ; i++)
+    {   
+        for(int j = 0 ; j < 20 ; j++)
+        {
+        if((word[i] == number[j] ))
+        {
+            count++;
+        }
+        
+        }
+    }
+    if(count == word.length())
+    {
+        return false;
+    }
+    else
+    {
+    return true;
+    }
+}
+
+// Character type validations
+bool character_type_validation(string word)
+{
+    int count = 0;
+    for(int i = 0 ; i < word.length() ; i++)
+    {
+        if((word[i] > 96 && word[i] < 124) || (word[i] > 63 && word[i] < 123) || word[i] == ' ' )
+        {
+            count++;
+        }
+    }
+    if(count == word.length())
+    {
+        return false;
+    }
+    else
+    {
+    return true;
+    }
+}
+// Password validation
+bool password_validation(string word)
+{
+    int count = 0;
+    for(int i = 0 ; i < word.length() ; i++)
+    {
+        if(word[i] == ' ' )
+        {
+            return true;
+        }
+    }
+        return false;
+    
+}
+
+// validion in adding mens
+bool validation_in_adding_soldiers_persons(int arr_index,string word)
+{   bool check = false;
+    if(arr_index == 0)
+    {
+        check = soldiers_batch_id_validations(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index >=1 && arr_index <= 3)
+    {
+        check = character_type_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index >= 4 && arr_index <= 6 )
+    {
+        check = numeric_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index == 7)
+    {
+        check = password_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+// validion in adding officers
+bool validation_in_adding_officers_persons(int arr_index,string word)
+{   bool check = false;
+    if(arr_index == 0)
+    {
+        check = officer_batch_id_validations(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index >=1 && arr_index <= 3)
+    {
+        check = character_type_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index >= 4 && arr_index <= 6 )
+    {
+        check = numeric_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+    if(arr_index == 7)
+    {
+        check = password_validation(word);
+        if(check == true)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//                          USER 1 AMS TEAM FUNCTIONS
+//                          USER 1 SUB SELECT SOLDIER
+int to_show_main_menu_ams(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << main_menu_names_ams[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+int to_show_sub_menu_army_soldier_ams(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_army_soldiers_ams[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// id INDEX IT GIVE US BACK
+int id_take_to_fetch_and_id_check_soldiers_ams()
+{
+	string batch_id;
+	int index = army_soldier_count;
+	again_take_batch_id:
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "                           ";
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "BATCH ID: ";
+	gotoxy(columns_of_screen / 2, 9);
+	cin >> batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == army_soldier_array[0][i])
+		{
+		return i;		
+		}
+	}
+	invalid_function();
+	goto again_take_batch_id;
+}
+int to_show_personal_details_from_soldiers_array(int batch_id_index)
+{
+	title("PERSONAL DETAILS OF SOLDIERS");
+	int arr_index = 0;
+    to_show_personal_details_options_soldiers_ams();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	cout<<army_soldier_array[arr_index][batch_id_index];
+	arr_index++;
+	}
+	gotoxy(columns_of_screen/3 + 10,rows_of_screen - 5);
+	cout<<"PRESS ANY KEY TO GO BACK";
+	getch();
+	return 1;
+
+}
+// to show personal details options by soldiers ams
+void to_show_personal_details_options_soldiers_ams()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_ams_soldiers[details_index];
+        details_index++;
+    }
+}
+// to add data in soldier array AMS
+void to_add_data_in_soldiers_array_ams() 
+{   string word;
+    
+	to_show_personal_details_options_soldiers_ams();
+    string must = "120-";
+	int index = army_soldier_count;
+	string batch_id;
+	int arr_index = 1;
+	function_start:
+	gotoxy(columns_of_screen/3 + 30,15);
+	cout<<"                          ";
+	gotoxy(columns_of_screen/3 + 30,15);
+	cin>>batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == army_soldier_array[0][i])
+		{
+			invalid_function();
+			goto function_start;
+		}
+		if((batch_id[0] != must[0] || batch_id[1] != must[1] || batch_id[2] != must[2] || batch_id[3] != must[3]))
+		{
+			invalid_function();
+			goto function_start;
+		}
+	}
+    if(validation_in_adding_soldiers_persons(0,batch_id))
+    {
+        goto function_start;
+    }
+	army_soldier_array[0][index] = batch_id;
+	for(int i = 2 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 1)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    army_soldier_array[arr_index][index] = word;
+	arr_index++;
+	}
+	index++;
+    army_soldier_count = index;
+}
+// to add data in soldier txt
+void to_add_data_in_soldier_txt_ams()
+{
+	int index = army_soldier_count;
+	string file_path = "ams_folder/ams_army_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::app);
+	file << endl;
+	for(int i = 0 ; i < 8 ; i++)
+	{
+		file << army_soldier_array[i][index - 1];
+		file << ",";
+	}	
+    file.close();
+}
+// to edit data in soldiers array
+void to_edit_data_in_soldiers_array_ams(int batch_id_index) 
+{
+    int arr_index = 0;
+    string word;
+	to_show_personal_details_options_soldiers_ams();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 0)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    army_soldier_array[arr_index][batch_id_index] = word;
+	arr_index++;
+	}
+	
+}
+// to add whole array dats in soldier txt
+void to_add_whole_data_in_soldier_txt_ams()
+{
+
+	string file_path = "ams_folder/ams_army_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < army_soldier_count ; columns++)
+	{   if(columns != 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << army_soldier_array[rows][columns];
+		file << ",";
+        }
+	}
+    file.close();	
+}
+// to show menu of retired soldiers
+int to_show_retired_menu_ams(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << retired_options_ams[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// view retired soldiers
+void to_view_retired_soldier_data_ams()
+{   title("RETIRED SOLDIERS SYSTEM");
+    for(int i = 0 ; i < retired_army_soldier_count ; i++)
+    {
+        gotoxy(15,14 + i);
+        cout<<"BATCH ID: "<<retired_army_soldier_array[0][i]<<" | "<<"NAME: "<<retired_army_soldier_array[1][i]<<" | "<<"SALARY: "<<retired_army_soldier_array[4][i]<<" | "<<"AGE: "<<retired_army_soldier_array[5][i]<<" | "<<endl;
+    }
+    gotoxy(columns_of_screen/3,10);
+    cout<<"PRESS ANY KEY TO GO BACK";
+    getch();
+}
+// to add removed soldier in retired
+void to_add_removed_soldier_in_retired_ams(int batch_index)
+{
+    int index = retired_army_soldier_count;
+    for(int i = 0 ; i < 8; i++)
+    {
+        retired_army_soldier_array[i][index] = army_soldier_array[i][batch_index]; 
+        
+    }
+    retired_army_soldier_count++;
+
+}
+// to remove retired soldier from soldiers array
+void to_remove_retired_soldier_from_array_ams(int batch_index)
+{
+    for(int col = batch_index ; col < army_soldier_count - 1 ; col++)
+    {
+        for(int row = 0; row < 8 ; row++)
+        {
+            army_soldier_array[row][col] = army_soldier_array[row][col + 1]; 
+        }
+    }
+    army_soldier_count--;
+    cout<<"\33[32m"<<army_soldier_count;
+    getch();
+} 
+// to add whole array dats in retired soldier txt
+void to_add_whole_data_in_retired_soldier_txt_ams()
+{
+    int i = 0;
+	string file_path = "retired/ams_retired_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < retired_army_soldier_count ; columns++)
+	{   
+        if(columns > 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << retired_army_soldier_array[rows][columns];
+		file << ",";
+        }
+        i++;
+	}
+    retired_army_soldier_count = i;
+    file.close();	
+}
+
+// to show menu of matryed soldiers
+int to_show_matryed_menu_ams(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << matryed_option[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// to view matryed
+int to_view_matryed(string address)
+{
+	int i = 14;
+	string matryed;
+	ifstream view_matryedfile;
+	view_matryedfile.open(address);
+	while (!view_matryedfile.eof())
+	{
+		getline(view_matryedfile,matryed);
+		cout << "\33[33m";
+		gotoxy(columns_of_screen / 3, i);
+		cout << matryed;
+		i++;
+	}
+}
+// to ADD  Matryed
+int to_add_matryed(string address)
+{
+	string matryed;
+	fstream recordfile;
+	recordfile.open(address, ios::app);
