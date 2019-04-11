@@ -4350,3 +4350,1155 @@ int to_add_matryed(string address)
 	string matryed;
 	fstream recordfile;
 	recordfile.open(address, ios::app);
+}
+// validation check instruments
+bool validation_check_instruments(int n, string word)
+{
+    bool check = false;
+    if(n == 0)
+    {
+    check = character_type_validation(word);
+    if(check == true)
+    {
+        return true;
+    }
+    }
+    if(n >= 1 && n <= 4)
+    {
+    check = numeric_validation(word); 
+    if(check == true)
+    {
+        return true;
+    }
+    }
+    return false;
+}
+// to add data of Weapons
+void to_add_data_of_carrier_in_txt()
+{
+    string file_path = "instruments/ams_carriers.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << ams_carriers[count_ams_carriers - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_weapons_in_txt()
+{
+    string file_path = "instruments/ams_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << ams_weapons[count_ams_weapons - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_tank_in_txt()
+{
+    string file_path = "instruments/ams_tank.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << ams_tank[count_ams_tank - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_missilies_in_txt()
+{
+    string file_path = "instruments/ams_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << ams_missilies[count_ams_missilies - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_bomb_in_txt()
+{
+    string file_path = "instruments/ams_bombs.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << ams_atomic_bombs[count_ams_atomic_bombs - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+// TO EDIT THE INSTRUMENTS RECORD
+void to_edit_instrument_record_carriers()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_ams_carriers ; i++)
+    {
+        cout<<i<<". "<<ams_carriers[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_ams_carriers && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_ams[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            ams_carriers[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_weapons()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_ams_weapons ; i++)
+    {
+        cout<<i<<". "<<ams_weapons[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_ams_weapons && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_ams[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            ams_weapons[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_tank()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_ams_tank ; i++)
+    {
+        cout<<i<<". "<<ams_tank[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_ams_tank && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_ams[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            ams_tank[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_missilies()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_ams_missilies ; i++)
+    {
+        cout<<i<<". "<<ams_missilies[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_ams_missilies && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_ams[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            ams_missilies[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_bombs()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_ams_atomic_bombs ; i++)
+    {
+        cout<<i<<". "<<ams_atomic_bombs[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_ams_atomic_bombs && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_ams[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            ams_atomic_bombs[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+// ADD WHOLE DATA IN TXT instruments
+void to_add_whole_data_in_txt_carriers()
+{
+    string file_path = "instruments/ams_carriers.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_ams_carriers ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << ams_carriers[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// tank
+void to_add_whole_data_in_txt_tank()
+{
+    string file_path = "instruments/ams_tank.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_ams_tank ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << ams_tank[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// mweapons
+void to_add_whole_data_in_txt_weapons()
+{
+    string file_path = "instruments/ams_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_ams_weapons ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << ams_weapons[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// missilies
+void to_add_whole_data_in_txt_missilies()
+{
+    string file_path = "instruments/ams_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_ams_missilies ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << ams_missilies[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+
+void to_add_whole_data_in_txt_bombs()
+{
+    string file_path = "instruments/ams_bombs.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_ams_atomic_bombs ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << ams_atomic_bombs[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// sub menu 4
+void graph_ams()
+{   int item_quantity[5] = {0,0,0,0,0};
+    for(int i = 0 ; i < count_ams_carriers ; i++)
+    {
+        item_quantity[0] = item_quantity[0] + stoi(ams_carriers[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_weapons ; i++)
+    {
+        item_quantity[1] = item_quantity[1] + stoi(ams_weapons[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_missilies ; i++)
+    {
+        item_quantity[2] = item_quantity[2] + stoi(ams_missilies[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_tank ; i++)
+    {
+        item_quantity[3] = item_quantity[3] + stoi(ams_tank[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_atomic_bombs ; i++)
+    {
+        item_quantity[4] = item_quantity[4] + stoi(ams_atomic_bombs[i][2]);
+    }
+	int j = 0;
+	for (int i = columns_of_screen / 8; i < columns_of_screen - 1; i++)
+	{
+		gotoxy(i, rows_of_screen - 4);
+		cout << "*";
+	}
+	for (int i = rows_of_screen - 4; i > 8; i--)
+	{
+		gotoxy(columns_of_screen / 8, i);
+		cout << "*";
+	}
+	for (int i = 0; i < 20; i = i + 4)
+	{
+
+		gotoxy(2, rows_of_screen / 3 + i);
+		cout << sub_of_sub_menu_instruments_ams[j];
+		j++;
+	}
+	int x = 0;
+	int screen = columns_of_screen / 8 + 1;
+	for (int i = 0; i < 20; i = i + 4)
+	{
+		for (j = 0; j < item_quantity[x] / 50000; j++)
+		{
+			gotoxy(screen + j, rows_of_screen / 3 + i);
+			cout << "#";
+		}
+		gotoxy(screen + j, rows_of_screen / 3 + i);
+		cout << " ";
+		x++;
+	}
+}
+// budget ams
+void total_ams_budget()
+{
+    int item_quantity[5] = {0,0,0,0,0};
+    for(int i = 0 ; i < count_ams_carriers ; i++)
+    {
+        item_quantity[0] = item_quantity[0] + stoi(ams_carriers[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_weapons ; i++)
+    {
+        item_quantity[1] = item_quantity[1] + stoi(ams_weapons[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_missilies ; i++)
+    {
+        item_quantity[2] = item_quantity[2] + stoi(ams_missilies[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_tank ; i++)
+    {
+        item_quantity[3] = item_quantity[3] + stoi(ams_tank[i][2]);
+    }
+    for(int i = 0 ; i < count_ams_atomic_bombs ; i++)
+    {
+        item_quantity[4] = item_quantity[4] + stoi(ams_atomic_bombs[i][2]);
+    }
+    int x = 0;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        gotoxy(columns_of_screen/3 , 16 + x);
+        cout<<sub_of_sub_menu_instruments_ams[i];
+        gotoxy(columns_of_screen/3 + 20, 16 + x);
+        cout<<item_quantity[i];
+        x = x + 2;
+    }
+}
+// SUB 4 MENU CROPS
+int to_show_sub_menu_army_crops_ams(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << ams_crops[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+void to_show_xxx_khor()
+{   
+    title("CROPS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < army_soldier_count ; i++)
+    {
+        if(army_soldier_array[3][i] == "PUNJAB" || army_soldier_array[3][i] == "SINDH")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<army_soldier_array[0][i]<<endl;
+        }
+
+    }
+    for(int i = 0 ; i < army_officer_count ; i++)
+    {
+        if(army_officer_array[3][i] == "PUNJAB" || army_officer_array[3][i] == "SINDH")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<army_officer_array[0][i]<<endl;
+            gotoxy(columns_of_screen/3,14 + i + 1);
+            cout<<"____________________________________";
+        }
+
+    }
+}
+void to_show_soc_khor()
+{   
+    
+    title("CROPS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < army_soldier_count ; i++)
+    {
+        if(army_soldier_array[3][i] == "KPK" || army_soldier_array[3][i] == "BALOCHISTAN" || army_soldier_array[3][i] == "KASHMIR")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<army_soldier_array[0][i]<<endl;
+            
+        }
+
+    }
+    for(int i = 0 ; i < army_officer_count ; i++)
+    {   
+        if(army_officer_array[3][i] == "KPK" || army_officer_array[3][i] == "BALOCHISTAN" || army_officer_array[3][i] == "KASHMIR")
+        { 
+            gotoxy(columns_of_screen/3 + 20,14 + i);
+            cout<<"BATCH ID: "<<army_officer_array[0][i]<<endl;
+            gotoxy(columns_of_screen/3 + 20,14 + i + 1);
+            cout<<"____________________________________";
+
+        }
+
+    }
+}
+// sub module 5
+void to_fetch_feedback()
+{
+    title("TO SHOW FEEDBACK OF FORCES");
+    string file_path = "feedback_file/feedbackfile.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::in);
+    int i = 0;
+
+    while(!file.eof())
+    {   
+        getline(file,line);
+        gotoxy(columns_of_screen/3 - 5, 16 + i);
+        cout<<line;
+        i = i + 2;
+    }
+}
+
+//                                  USER 2
+//                                   NMS
+
+//                          USER 2 nms TEAM FUNCTIONS
+//                          USER 2 SUB SELECT SOLDIER
+int to_show_main_menu_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << main_menu_names_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+int to_show_sub_menu_navy_soldier_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_navy_soldiers_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// id INDEX IT GIVE US BACK
+int id_take_to_fetch_and_id_check_soldiers_nms()
+{
+	string batch_id;
+	int index = navy_soldier_count;
+	again_take_batch_id:
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "                           ";
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "BATCH ID: ";
+	gotoxy(columns_of_screen / 2, 9);
+	cin >> batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == navy_soldier_array[0][i])
+		{
+		return i;		
+		}
+	}
+	invalid_function();
+	goto again_take_batch_id;
+}
+int to_show_personal_details_from_navy_soldiers_array(int batch_id_index)
+{
+	title("PERSONAL DETAILS OF NAVY SOLDIERS");
+	int arr_index = 0;
+    to_show_personal_details_options_soldiers_nms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	cout<<navy_soldier_array[arr_index][batch_id_index];
+	arr_index++;
+	}
+	gotoxy(columns_of_screen/3 + 10,rows_of_screen - 5);
+	cout<<"PRESS ANY KEY TO GO BACK";
+	getch();
+	return 1;
+
+}
+// to show personal details options by soldiers nms
+void to_show_personal_details_options_soldiers_nms()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_nms_soldiers[details_index];
+        details_index++;
+    }
+}
+// to add data in soldier array nms
+void to_add_data_in_soldiers_array_nms() 
+{   string word;
+    
+	to_show_personal_details_options_soldiers_nms();
+    string must = "121-";
+	int index = navy_soldier_count;
+	string batch_id;
+	int arr_index = 1;
+	function_start:
+	gotoxy(columns_of_screen/3 + 30,15);
+	cout<<"                          ";
+	gotoxy(columns_of_screen/3 + 30,15);
+	cin>>batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == navy_soldier_array[0][i])
+		{
+			invalid_function();
+			goto function_start;
+		}
+		if((batch_id[0] != must[0] || batch_id[1] != must[1] || batch_id[2] != must[2] || batch_id[3] != must[3]))
+		{
+			invalid_function();
+			goto function_start;
+		}
+	}
+    if(validation_in_adding_soldiers_persons(0,batch_id))
+    {
+        goto function_start;
+    }
+	navy_soldier_array[0][index] = batch_id;
+	for(int i = 2 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 1)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    navy_soldier_array[arr_index][index] = word;
+	arr_index++;
+	}
+	index++;
+    navy_soldier_count = index;
+}
+// to add data in soldier txt
+void to_add_data_in_soldier_txt_nms()
+{
+	int index = navy_soldier_count;
+	string file_path = "ams_folder/nms_navy_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::app);
+	file << endl;
+	for(int i = 0 ; i < 8 ; i++)
+	{
+		file << navy_soldier_array[i][index - 1];
+		file << ",";
+	}	
+    file.close();
+}
+// to edit data in soldiers array
+void to_edit_data_in_soldiers_array_nms(int batch_id_index) 
+{
+    int arr_index = 0;
+    string word;
+	to_show_personal_details_options_soldiers_nms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 0)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    navy_soldier_array[arr_index][batch_id_index] = word;
+	arr_index++;
+	}
+	
+}
+// to add whole array dats in soldier txt
+void to_add_whole_data_in_soldier_txt_nms()
+{
+
+	string file_path = "ams_folder/nms_navy_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < navy_soldier_count ; columns++)
+	{   if(columns != 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << navy_soldier_array[rows][columns];
+		file << ",";
+        }
+	}
+    file.close();	
+}
+// to show menu of retired soldiers
+int to_show_retired_menu_nms(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << retired_options_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// view retired soldiers
+void to_view_retired_soldier_data_nms()
+{   title("RETIRED SOLDIERS SYSTEM");
+    for(int i = 0 ; i < retired_navy_soldier_count ; i++)
+    {
+        gotoxy(15,14 + i);
+        cout<<"BATCH ID: "<<retired_navy_soldier_array[0][i]<<" | "<<"NAME: "<<retired_navy_soldier_array[1][i]<<" | "<<"SALARY: "<<retired_navy_soldier_array[4][i]<<" | "<<"AGE: "<<retired_navy_soldier_array[5][i]<<" | "<<endl;
+    }
+    gotoxy(columns_of_screen/3,10);
+    cout<<"PRESS ANY KEY TO GO BACK";
+    getch();
+}
+// to add removed soldier in retired
+void to_add_removed_soldier_in_retired_nms(int batch_index)
+{
+    int index = retired_navy_soldier_count;
+    for(int i = 0 ; i < 8; i++)
+    {
+        retired_navy_soldier_array[i][index] = navy_soldier_array[i][batch_index]; 
+        
+    }
+    retired_navy_soldier_count++;
+
+}
+// to remove retired soldier from soldiers array
+void to_remove_retired_soldier_from_array_nms(int batch_index)
+{
+    for(int col = batch_index ; col < navy_soldier_count - 1 ; col++)
+    {
+        for(int row = 0; row < 8 ; row++)
+        {
+            navy_soldier_array[row][col] = navy_soldier_array[row][col + 1]; 
+        }
+    }
+    navy_soldier_count--;
+    cout<<"\33[32m"<<navy_soldier_count;
+    getch();
+} 
+// to add whole array dats in retired soldier txt
+void to_add_whole_data_in_retired_soldier_txt_nms()
+{
+    int i = 0;
+	string file_path = "retired/nms_retired_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < retired_navy_soldier_count ; columns++)
+	{   
+        if(columns > 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << retired_navy_soldier_array[rows][columns];
+		file << ",";
+        }
+        i++;
+	}
+    retired_navy_soldier_count = i;
+    file.close();	
+}
+
+// to show menu of matryed soldiers
+int to_show_matryed_menu_nms(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << matryed_option[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+//                      user 1 sub NAVY officer
+int to_show_sub_menu_navy_officer_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_navy_officers_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+int id_take_to_fetch_and_id_check_officer_nms()
+{
+	string batch_id;
+	int index = navy_officer_count;
+	again_take_batch_id:
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "                           ";
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "BATCH ID: ";
+	gotoxy(columns_of_screen / 2, 9);
+	cin >> batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == navy_officer_array[0][i])
+		{
+		return i;		
+		}
+	}
+	invalid_function();
+	goto again_take_batch_id;
+}
+int to_show_personal_details_from_navy_officer_array(int batch_id_index)
+{
+	title("PERSONAL DETAILS OF OFFICERS");
+	int arr_index = 0;
+    to_show_personal_details_options_officer_nms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	cout<<navy_officer_array[arr_index][batch_id_index];
+	arr_index++;
+	}
+	gotoxy(columns_of_screen/3 + 10,rows_of_screen - 5);
+	cout<<"PRESS ANY KEY TO GO BACK";
+	getch();
+	return 1;
+
+}
+// personal details options of officers
+void to_show_personal_details_options_officer_nms()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_nms_officers[details_index];
+        details_index++;
+    }
+}
+// to add data in soldier array nms
+void to_add_data_in_officer_array_nms() 
+{
+    string word;
+	to_show_personal_details_options_officer_nms();
+    string must = "NAV-";
+	int index = navy_officer_count;
+	string batch_id;
+	int arr_index = 1;
+	function_start:
+	gotoxy(columns_of_screen/3 + 30,15);
+	cout<<"                          ";
+	gotoxy(columns_of_screen/3 + 30,15);
+	cin>>batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{ 
+		if(batch_id == navy_officer_array[0][i])
+		{
+			invalid_function();
+			goto function_start;
+		}
+		if((batch_id[0] != must[0] || batch_id[1] != must[1] || batch_id[2] != must[2] || batch_id[3] != must[3]))
+		{
+			invalid_function();
+			goto function_start;
+		}
+	}
+    if(validation_in_adding_officers_persons(0,batch_id))
+    {
+        goto function_start;
+    }
+	navy_officer_array[0][index] = batch_id;
+	for(int i = 2 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 1)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+    getline(cin,word);
+    if(validation_in_adding_officers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+	navy_officer_array[arr_index][index] = word;
+	arr_index++;
+	}
+	index++;
+    navy_officer_count = index;
+}
+// to add data in officer txt
+void to_add_data_in_officer_txt_nms()
+{
+	int index = navy_officer_count;
+	string file_path = "ams_folder/nms_navy_officer.txt";
+    fstream file;
+	file.open(file_path,ios::app);
+	file << endl;
+	for(int i = 0 ; i < 8 ; i++)
+	{
+		file << navy_officer_array[i][index - 1];
+		file << ",";
+	}	
+    file.close();
+}
+// to edit data in officer array
+void to_edit_data_in_officer_array_nms(int batch_id_index) 
+{
+    string word;
+    int arr_index = 0;
+	to_show_personal_details_options_officer_nms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 0)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_officers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    navy_officer_array[arr_index][batch_id_index] = word ;
+	
+    arr_index++;
+	}
+	
+}
+// to add whole array dats in officer txt
+void to_add_whole_data_in_officer_txt_nms()
+{
+	string file_path = "ams_folder/nms_navy_officer.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < navy_officer_count ; columns++)
+	{   if(columns != 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << navy_officer_array[rows][columns];
+		file << ",";
+        }
+	}
+    file.close();	
+}
+// view retired officers
+void to_view_retired_officer_data_nms()
+{   title("RETIRED OFFICERS SYSTEM");
+    for(int i = 0 ; i < retired_navy_officer_count ; i++)
+    {
+        gotoxy(15,14 + i);
+        cout<<"BATCH ID: "<<retired_navy_officer_array[0][i]<<" | "<<"NAME: "<<retired_navy_soldier_array[1][i]<<" | "<<"SALARY: "<<retired_navy_soldier_array[4][i]<<" | "<<"AGE: "<<retired_navy_soldier_array[5][i]<<" | "<<endl;
+    }
+    gotoxy(columns_of_screen/3,10);
+    cout<<"PRESS ANY KEY TO GO BACK";
+    getch();
+}
+// 
+void to_add_removed_officer_in_retired_nms(int batch_index)
+{
+    int index = retired_navy_officer_count;
+    for(int i = 0 ; i < 8; i++)
+    {
+        retired_navy_officer_array[i][index] = navy_officer_array[i][batch_index]; 
+        
+    }
+    retired_navy_officer_count++;
+
+}
+// to remove retired soldier from soldiers array
+void to_remove_retired_officer_from_array_nms(int batch_index)
+{
+    for(int col = batch_index ; col < navy_officer_count - 1 ; col++)
+    {
+        for(int row = 0; row < 8 ; row++)
+        {
+            navy_officer_array[row][col] = navy_officer_array[row][col + 1]; 
+        }
+    }
+    navy_officer_count--;
+    cout<<"\33[32m"<<navy_officer_count;
+    getch();
+} 
+// to add whole array dats in retired soldier txt
+void to_add_whole_data_in_retired_officer_txt_nms()
+{
+    int i = 0;
+	string file_path = "retired/nms_retired_officers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < retired_navy_officer_count ; columns++)
+	{   
+        if(columns > 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << retired_navy_officer_array[rows][columns];
+		file << ",";
+        }
+        i++;
+	}
+    retired_navy_officer_count = i;
+    file.close();	
+}
+// to see data of provience
+int to_see_data_from_nms_officer_arrray(int row,string provience)
+{   int count = 0;
+    for(int i = 0 ; i < navy_officer_count ; i++)
+    {
+        if(navy_officer_array[row][i] == provience)
+        {
+            gotoxy(columns_of_screen/3 ,15 + count);
+            cout<<navy_officer_array[0][i];
+            count++;
+        }
+    }
+    return count;
+}
+// Soldier under officer
+void soldier_under_officers_nms()
+{   int j = 0;
+    for(int i = 0 ; i < navy_officer_count ; i++)
+    {   
+        soldiers_under_the_officer_nms[0][i] = navy_soldier_array[0][j];
+        soldiers_under_the_officer_nms[1][i] = navy_soldier_array[0][j + 1];
+        j = j + 2;
+    }
+    
+}
+// SOLDIERS UNDER the officer view
+void soldier_under_officer_view_nms(int batch_id)
+{
+    gotoxy(columns_of_screen/3 + 14, 15);
+    cout<<"BATCH ID: "<<soldiers_under_the_officer_nms[0][batch_id];
+    gotoxy(columns_of_screen/3 + 14 , 17);
+    cout<<"BATCH ID: "<<soldiers_under_the_officer_nms[1][batch_id];
+}
+//              SUB OPTION 3
+int to_show_sub_menu_navy_instruments_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_instruments_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
