@@ -5502,3 +5502,771 @@ int to_show_sub_menu_navy_instruments_nms(int no_of_index)
     }
     return 1;
 }
+//
+int to_show_sub_detail_view_navy_instruments_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_of_sub_menu_instruments_nms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+
+// to show air_craft details
+void to_show_air_craft_details()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_nms_air_craft ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {
+            cout<<readable_instruments_nms[j];
+            cout<<nms_air_craft[i][j]<<"   ";
+        }
+    }
+}
+// to show weapons details
+void to_show_weapons_details_navy()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_nms_weapons  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   cout<<readable_instruments_nms[j];
+            cout<<nms_weapons[i][j]<<"  ";
+        }
+    }
+
+}
+// to show missiles details
+void to_show_missilies_details_navy()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_nms_missilies ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_nms[j];
+            cout<<nms_missilies[i][j]<<"   ";
+        }
+    }
+
+}
+// to show subarine details
+void to_show_subarine_details()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_nms_subarine  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_nms[j];
+            cout<<nms_subarine[i][j]<<"   ";
+        }
+    }
+
+}
+// to show surface_ships details
+void to_show_surface_ships_details()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_nms_surface_ships  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_nms[j];
+            cout<<nms_surface_ships[i][j]<<"   ";
+        }
+    }
+
+}
+// to_add data in instruments
+void to_add_data_in_array_air_craft()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_nms_air_craft;
+    for(int i = 0 ; i < 5 ; i++)
+    {   back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_nms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        nms_air_craft[index][i] = word; 
+    }
+    count_nms_air_craft++;
+}
+// to_add data in instruments
+void to_add_data_in_array_weapons_navy()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_nms_weapons;
+    for(int i = 0 ; i < 5 ; i++)
+    {   back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_nms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        nms_weapons[index][i] = word; 
+    }
+    count_nms_weapons++;
+}
+// to_add data in instruments
+void to_add_data_in_array_missilies_navy()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_nms_missilies;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_nms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        nms_missilies[index][i] = word; 
+    }
+    count_nms_missilies++;
+}
+void to_add_data_in_array_subarine()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_nms_subarine;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_nms[i];
+        
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        nms_subarine[index][i] = word; 
+    }
+    count_nms_subarine++;
+}
+void to_add_data_in_array_surface_ship()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_nms_surface_ships;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_nms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        nms_surface_ships[index][i] = word; 
+    }
+    count_nms_surface_ships++;
+}
+// to add data of Weapons
+void to_add_data_of_air_craft_in_txt()
+{
+    string file_path = "instruments/nms_air_craft.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << nms_air_craft[count_nms_air_craft - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_weapons_in_txt_navy()
+{
+    string file_path = "instruments/nms_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << nms_weapons[count_nms_weapons - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_subarine_in_txt()
+{
+    string file_path = "instruments/nms_subarine.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << nms_subarine[count_nms_subarine - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_missilies_in_txt_navy()
+{
+    string file_path = "instruments/nms_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << nms_missilies[count_nms_missilies - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_surface_ship_in_txt()
+{
+    string file_path = "instruments/nms_surface_ships.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << nms_surface_ships[count_nms_surface_ships - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+// TO EDIT THE INSTRUMENTS RECORD
+void to_edit_instrument_record_air_craft()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_nms_air_craft ; i++)
+    {
+        cout<<i<<". "<<nms_air_craft[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_nms_air_craft && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_nms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            nms_air_craft[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_weapons_navy()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_nms_weapons ; i++)
+    {
+        cout<<i<<". "<<nms_weapons[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_nms_weapons && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_nms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            nms_weapons[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_subarine()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_nms_subarine ; i++)
+    {
+        cout<<i<<". "<<nms_subarine[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_nms_subarine && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_nms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            nms_subarine[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_missilies_navy()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_nms_missilies ; i++)
+    {
+        cout<<i<<". "<<nms_missilies[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_nms_missilies && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_nms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            nms_missilies[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_surface_ships()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_nms_surface_ships ; i++)
+    {
+        cout<<i<<". "<<nms_surface_ships[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_nms_surface_ships && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_nms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            nms_surface_ships[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+// ADD WHOLE DATA IN TXT instruments
+void to_add_whole_data_in_txt_air_craft()
+{
+    string file_path = "instruments/nms_air_craft.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_nms_air_craft ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << nms_air_craft[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// subarine
+void to_add_whole_data_in_txt_subarine()
+{
+    string file_path = "instruments/nms_subarine.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_nms_subarine ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << nms_subarine[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// mweapons
+void to_add_whole_data_in_txt_weapons_navy()
+{
+    string file_path = "instruments/nms_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_nms_weapons ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << nms_weapons[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// missilies
+void to_add_whole_data_in_txt_missilies_navy()
+{
+    string file_path = "instruments/nms_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_nms_missilies ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << nms_missilies[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+
+void to_add_whole_data_in_txt_surface_ships()
+{
+    string file_path = "instruments/nms_surface_ships.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_nms_surface_ships ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << nms_surface_ships[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// sub menu 4
+void graph_nms()
+{   int item_quantity[5] = {0,0,0,0,0};
+    for(int i = 0 ; i < count_nms_air_craft ; i++)
+    {
+        item_quantity[0] = item_quantity[0] + stoi(nms_air_craft[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_weapons ; i++)
+    {
+        item_quantity[1] = item_quantity[1] + stoi(nms_weapons[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_missilies ; i++)
+    {
+        item_quantity[2] = item_quantity[2] + stoi(nms_missilies[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_subarine ; i++)
+    {
+        item_quantity[3] = item_quantity[3] + stoi(nms_subarine[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_surface_ships ; i++)
+    {
+        item_quantity[4] = item_quantity[4] + stoi(nms_surface_ships[i][2]);
+    }
+	int j = 0;
+	for (int i = columns_of_screen / 8; i < columns_of_screen - 1; i++)
+	{
+		gotoxy(i, rows_of_screen - 4);
+		cout << "*";
+	}
+	for (int i = rows_of_screen - 4; i > 8; i--)
+	{
+		gotoxy(columns_of_screen / 8, i);
+		cout << "*";
+	}
+	for (int i = 0; i < 20; i = i + 4)
+	{
+
+		gotoxy(2, rows_of_screen / 3 + i);
+		cout << sub_of_sub_menu_instruments_nms[j];
+		j++;
+	}
+	int x = 0;
+	int screen = columns_of_screen / 8 + 1;
+	for (int i = 0; i < 20; i = i + 4)
+	{
+		for (j = 0; j < item_quantity[x] / 50000; j++)
+		{
+			gotoxy(screen + j, rows_of_screen / 3 + i);
+			cout << "#";
+		}
+		gotoxy(screen + j, rows_of_screen / 3 + i);
+		cout << " ";
+		x++;
+	}
+}
+// budget nms
+void total_nms_budget()
+{
+    int item_quantity[5] = {0,0,0,0,0};
+    for(int i = 0 ; i < count_nms_air_craft ; i++)
+    {
+        item_quantity[0] = item_quantity[0] + stoi(nms_air_craft[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_weapons ; i++)
+    {
+        item_quantity[1] = item_quantity[1] + stoi(nms_weapons[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_missilies ; i++)
+    {
+        item_quantity[2] = item_quantity[2] + stoi(nms_missilies[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_subarine ; i++)
+    {
+        item_quantity[3] = item_quantity[3] + stoi(nms_subarine[i][2]);
+    }
+    for(int i = 0 ; i < count_nms_surface_ships ; i++)
+    {
+        item_quantity[4] = item_quantity[4] + stoi(nms_surface_ships[i][2]);
+    }
+    int x = 0;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        gotoxy(columns_of_screen/3 , 16 + x);
+        cout<<sub_of_sub_menu_instruments_nms[i];
+        gotoxy(columns_of_screen/3 + 20, 16 + x);
+        cout<<item_quantity[i];
+        x = x + 2;
+    }
+}
+// SUB 4 MENU CROPS
+int to_show_sub_menu_navy_crops_nms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << nms_crops[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+void to_show_naval_khor()
+{   
+    title("CROPS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < navy_soldier_count ; i++)
+    {
+        if(navy_soldier_array[3][i] == "PUNJAB" || navy_soldier_array[3][i] == "SINDH")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<navy_soldier_array[0][i]<<endl;
+        }
+
+    }
+    for(int i = 0 ; i < navy_officer_count ; i++)
+    {
+        if(navy_officer_array[3][i] == "PUNJAB" || navy_officer_array[3][i] == "SINDH")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<navy_officer_array[0][i]<<endl;
+            gotoxy(columns_of_screen/3,14 + i + 1);
+            cout<<"____________________________________";
+        }
+
+    }
+}
+void to_show_naizi_khor()
+{   
+    
+    title("CROPS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < navy_soldier_count ; i++)
+    {
+        if(navy_soldier_array[3][i] == "KPK" || navy_soldier_array[3][i] == "BALOCHISTAN" || navy_soldier_array[3][i] == "KASHMIR")
+        {
+            gotoxy(columns_of_screen/3,14 + i);
+            cout<<"BATCH ID: "<<navy_soldier_array[0][i]<<endl;
+            
+        }
+
+    }
+    for(int i = 0 ; i < navy_officer_count ; i++)
+    {   
+        if(navy_officer_array[3][i] == "KPK" || navy_officer_array[3][i] == "BALOCHISTAN" || navy_officer_array[3][i] == "KASHMIR")
+        { 
+            gotoxy(columns_of_screen/3 + 20,14 + i);
+            cout<<"BATCH ID: "<<navy_officer_array[0][i]<<endl;
+            gotoxy(columns_of_screen/3 + 20,14 + i + 1);
+            cout<<"____________________________________";
+
+        }
+
+    }
+}
+//                                  USER 3
+//                                   afms
+
+//                          USER 3 afms TEAM FUNCTIONS
+//                          USER 3 SUB SELECT SOLDIER
+
+int to_show_main_menu_afms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << main_menu_names_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+int to_show_sub_menu_air_force_soldier_afms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
