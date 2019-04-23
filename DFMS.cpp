@@ -6270,3 +6270,387 @@ int to_show_sub_menu_air_force_soldier_afms(int no_of_index)
     for (int i = 0; i < no_of_index; i++)
     {
         gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_air_force_soldiers_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// id INDEX IT GIVE US BACK
+int id_take_to_fetch_and_id_check_soldiers_afms()
+{
+	string batch_id;
+	int index = air_force_soldier_count;
+	again_take_batch_id:
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "                           ";
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "BATCH ID: ";
+	gotoxy(columns_of_screen / 2, 9);
+	cin >> batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == air_force_soldier_array[0][i])
+		{
+		return i;		
+		}
+	}
+	invalid_function();
+	goto again_take_batch_id;
+}
+int to_show_personal_details_from_air_force_soldiers_array(int batch_id_index)
+{
+	title("PERSONAL DETAILS OF AIR FORCE SOLDIERS");
+	int arr_index = 0;
+    to_show_personal_details_options_soldiers_afms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	cout<<air_force_soldier_array[arr_index][batch_id_index];
+	arr_index++;
+	}
+	gotoxy(columns_of_screen/3 + 10,rows_of_screen - 5);
+	cout<<"PRESS ANY KEY TO GO BACK";
+	getch();
+	return 1;
+
+}
+// to show personal details options by soldiers afms
+void to_show_personal_details_options_soldiers_afms()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_afms_soldiers[details_index];
+        details_index++;
+    }
+}
+// to add data in soldier array afms
+void to_add_data_in_soldiers_array_afms() 
+{   string word;
+    
+	to_show_personal_details_options_soldiers_afms();
+    string must = "122-";
+	int index = air_force_soldier_count;
+	string batch_id;
+	int arr_index = 1;
+	function_start:
+	gotoxy(columns_of_screen/3 + 30,15);
+	cout<<"                          ";
+	gotoxy(columns_of_screen/3 + 30,15);
+	cin>>batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == air_force_soldier_array[0][i])
+		{
+			invalid_function();
+			goto function_start;
+		}
+		if((batch_id[0] != must[0] || batch_id[1] != must[1] || batch_id[2] != must[2] || batch_id[3] != must[3]))
+		{
+			invalid_function();
+			goto function_start;
+		}
+	}
+    if(validation_in_adding_soldiers_persons(0,batch_id))
+    {
+        goto function_start;
+    }
+	air_force_soldier_array[0][index] = batch_id;
+	for(int i = 2 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 1)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    air_force_soldier_array[arr_index][index] = word;
+	arr_index++;
+	}
+	index++;
+    air_force_soldier_count = index;
+}
+// to add data in soldier txt
+void to_add_data_in_soldier_txt_afms()
+{
+	int index = air_force_soldier_count;
+	string file_path = "ams_folder/afms_air_force_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::app);
+	file << endl;
+	for(int i = 0 ; i < 8 ; i++)
+	{
+		file << air_force_soldier_array[i][index - 1];
+		file << ",";
+	}	
+    file.close();
+}
+// to edit data in soldiers array
+void to_edit_data_in_soldiers_array_afms(int batch_id_index) 
+{
+    int arr_index = 0;
+    string word;
+	to_show_personal_details_options_soldiers_afms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 0)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_soldiers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    air_force_soldier_array[arr_index][batch_id_index] = word;
+	arr_index++;
+	}
+	
+}
+// to add whole array dats in soldier txt
+void to_add_whole_data_in_soldier_txt_afms()
+{
+
+	string file_path = "ams_folder/afms_air_force_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < air_force_soldier_count ; columns++)
+	{   if(columns != 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << air_force_soldier_array[rows][columns];
+		file << ",";
+        }
+	}
+    file.close();	
+}
+// to show menu of retired soldiers
+int to_show_retired_menu_afms(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << retired_options_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+// view retired soldiers
+void to_view_retired_soldier_data_afms()
+{   title("RETIRED SOLDIERS SYSTEM");
+    for(int i = 0 ; i < retired_air_force_soldier_count ; i++)
+    {
+        gotoxy(15,14 + i);
+        cout<<"BATCH ID: "<<retired_air_force_soldier_array[0][i]<<" | "<<"NAME: "<<retired_air_force_soldier_array[1][i]<<" | "<<"SALARY: "<<retired_air_force_soldier_array[4][i]<<" | "<<"AGE: "<<retired_air_force_soldier_array[5][i]<<" | "<<endl;
+    }
+    gotoxy(columns_of_screen/3,10);
+    cout<<"PRESS ANY KEY TO GO BACK";
+    getch();
+}
+// to add removed soldier in retired
+void to_add_removed_soldier_in_retired_afms(int batch_index)
+{
+    int index = retired_air_force_soldier_count;
+    for(int i = 0 ; i < 8; i++)
+    {
+        retired_air_force_soldier_array[i][index] = air_force_soldier_array[i][batch_index]; 
+        
+    }
+    retired_air_force_soldier_count++;
+
+}
+// to remove retired soldier from soldiers array
+void to_remove_retired_soldier_from_array_afms(int batch_index)
+{
+    for(int col = batch_index ; col < air_force_soldier_count - 1 ; col++)
+    {
+        for(int row = 0; row < 8 ; row++)
+        {
+            air_force_soldier_array[row][col] = air_force_soldier_array[row][col + 1]; 
+        }
+    }
+    air_force_soldier_count--;
+    cout<<"\33[32m"<<air_force_soldier_count;
+    getch();
+} 
+// to add whole array dats in retired soldier txt
+void to_add_whole_data_in_retired_soldier_txt_afms()
+{
+    int i = 0;
+	string file_path = "retired/afms_retired_soldiers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < retired_air_force_soldier_count ; columns++)
+	{   
+        if(columns > 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << retired_air_force_soldier_array[rows][columns];
+		file << ",";
+        }
+        i++;
+	}
+    retired_air_force_soldier_count = i;
+    file.close();	
+}
+
+// to show menu of matryed soldiers
+int to_show_matryed_menu_afms(int no_of_index)
+{
+    int rows = 15;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << matryed_option[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+//                      user 1 sub AIR FORCE officer
+int to_show_sub_menu_air_force_officer_afms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_air_force_officers_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+int id_take_to_fetch_and_id_check_officer_afms()
+{
+	string batch_id;
+	int index = air_force_officer_count;
+	again_take_batch_id:
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "                           ";
+	gotoxy(columns_of_screen / 2 - 10, 9);
+	cout << "BATCH ID: ";
+	gotoxy(columns_of_screen / 2, 9);
+	cin >> batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{
+		if(batch_id == air_force_officer_array[0][i])
+		{
+		return i;		
+		}
+	}
+	invalid_function();
+	goto again_take_batch_id;
+}
+int to_show_personal_details_from_air_force_officer_array(int batch_id_index)
+{
+	title("PERSONAL DETAILS OF OFFICERS");
+	int arr_index = 0;
+    to_show_personal_details_options_officer_afms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	cout<<air_force_officer_array[arr_index][batch_id_index];
+	arr_index++;
+	}
+	gotoxy(columns_of_screen/3 + 10,rows_of_screen - 5);
+	cout<<"PRESS ANY KEY TO GO BACK";
+	getch();
+	return 1;
+
+}
+// personal details options of officers
+void to_show_personal_details_options_officer_afms()
+{
+    int details_index = 0;
+    for (int i = 0; i < 16; i = i + 2)
+    {
+        gotoxy(columns_of_screen / 3, 15 + i);
+        cout << personal_details_options_afms_officers[details_index];
+        details_index++;
+    }
+}
+// to add data in soldier array afms
+void to_add_data_in_officer_array_afms() 
+{
+    string word;
+	to_show_personal_details_options_officer_afms();
+    string must = "EAG-";
+	int index = air_force_officer_count;
+	string batch_id;
+	int arr_index = 1;
+	function_start:
+	gotoxy(columns_of_screen/3 + 30,15);
+	cout<<"                          ";
+	gotoxy(columns_of_screen/3 + 30,15);
+	cin>>batch_id;
+	for(int i = 0 ; i < index ; i++)
+	{ 
+		if(batch_id == air_force_officer_array[0][i])
+		{
+			invalid_function();
+			goto function_start;
+		}
+		if((batch_id[0] != must[0] || batch_id[1] != must[1] || batch_id[2] != must[2] || batch_id[3] != must[3]))
+		{
+			invalid_function();
+			goto function_start;
+		}
+	}
+    if(validation_in_adding_officers_persons(0,batch_id))
+    {
+        goto function_start;
+    }
+	air_force_officer_array[0][index] = batch_id;
+	for(int i = 2 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 1)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+    getline(cin,word);
+    if(validation_in_adding_officers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+	air_force_officer_array[arr_index][index] = word;
+	arr_index++;
+	}
+	index++;
+    air_force_officer_count = index;
+}
+// to add data in officer txt
+void to_add_data_in_officer_txt_afms()
+{
+	int index = air_force_officer_count;
+	string file_path = "ams_folder/afms_air_force_officer.txt";
+    fstream file;
+	file.open(file_path,ios::app);
+	file << endl;
+	for(int i = 0 ; i < 8 ; i++)
+	{
