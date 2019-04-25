@@ -6654,3 +6654,803 @@ void to_add_data_in_officer_txt_afms()
 	file << endl;
 	for(int i = 0 ; i < 8 ; i++)
 	{
+		file << air_force_officer_array[i][index - 1];
+		file << ",";
+	}	
+    file.close();
+}
+// to edit data in officer array
+void to_edit_data_in_officer_array_afms(int batch_id_index) 
+{
+    string word;
+    int arr_index = 0;
+	to_show_personal_details_options_officer_afms();
+	for(int i = 0 ; i < 16 ; i = i + 2)
+	{
+	if(arr_index == 0)
+	{
+		cin.ignore();
+	}
+	backer:
+	gotoxy(columns_of_screen/3 + 30,15 + i);
+	getline(cin,word);
+    if(validation_in_adding_officers_persons(arr_index,word))
+    {
+        gotoxy(columns_of_screen/3 + 30,15 + i);
+        cout<<"                             ";
+        goto backer;
+    }
+    air_force_officer_array[arr_index][batch_id_index] = word ;
+	
+    arr_index++;
+	}
+	
+}
+// to add whole array dats in officer txt
+void to_add_whole_data_in_officer_txt_afms()
+{
+	string file_path = "ams_folder/afms_air_force_officer.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < air_force_officer_count ; columns++)
+	{   if(columns != 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << air_force_officer_array[rows][columns];
+		file << ",";
+        }
+	}
+    file.close();	
+}
+// view retired officers
+void to_view_retired_officer_data_afms()
+{   title("RETIRED OFFICERS SYSTEM");
+    for(int i = 0 ; i < retired_air_force_officer_count ; i++)
+    {
+        gotoxy(15,14 + i);
+        cout<<"BATCH ID: "<<retired_air_force_officer_array[0][i]<<" | "<<"NAME: "<<retired_air_force_soldier_array[1][i]<<" | "<<"SALARY: "<<retired_air_force_soldier_array[4][i]<<" | "<<"AGE: "<<retired_air_force_soldier_array[5][i]<<" | "<<endl;
+    }
+    gotoxy(columns_of_screen/3,10);
+    cout<<"PRESS ANY KEY TO GO BACK";
+    getch();
+}
+// 
+void to_add_removed_officer_in_retired_afms(int batch_index)
+{
+    int index = retired_air_force_officer_count;
+    for(int i = 0 ; i < 8; i++)
+    {
+        retired_air_force_officer_array[i][index] = air_force_officer_array[i][batch_index]; 
+        
+    }
+    retired_air_force_officer_count++;
+
+}
+// to remove retired soldier from soldiers array
+void to_remove_retired_officer_from_array_afms(int batch_index)
+{
+    for(int col = batch_index ; col < air_force_officer_count - 1 ; col++)
+    {
+        for(int row = 0; row < 8 ; row++)
+        {
+            air_force_officer_array[row][col] = air_force_officer_array[row][col + 1]; 
+        }
+    }
+    air_force_officer_count--;
+    cout<<"\33[32m"<<air_force_officer_count;
+    getch();
+} 
+// to add whole array dats in retired soldier txt
+void to_add_whole_data_in_retired_officer_txt_afms()
+{
+    int i = 0;
+	string file_path = "retired/afms_retired_officers.txt";
+    fstream file;
+	file.open(file_path,ios::out);
+    
+    for(int columns = 0 ; columns < retired_air_force_officer_count ; columns++)
+	{   
+        if(columns > 0)
+        {
+	    file << endl;
+        }
+        for(int rows = 0 ; rows < 8 ; rows++)
+		{
+        file << retired_air_force_officer_array[rows][columns];
+		file << ",";
+        }
+        i++;
+	}
+    retired_air_force_officer_count = i;
+    file.close();	
+}
+// to see data of provience
+int to_see_data_from_afms_officer_arrray(int row,string provience)
+{   int count = 0;
+    for(int i = 0 ; i < air_force_officer_count ; i++)
+    {
+        if(air_force_officer_array[row][i] == provience)
+        {
+            gotoxy(columns_of_screen/3 ,15 + count);
+            cout<<air_force_officer_array[0][i];
+            count++;
+        }
+    }
+    return count;
+}
+// Soldier under officer
+void soldier_under_officers_afms()
+{   int j = 0;
+    for(int i = 0 ; i < air_force_officer_count ; i++)
+    {   
+        soldiers_under_the_officer_afms[0][i] = air_force_soldier_array[0][j];
+        soldiers_under_the_officer_afms[1][i] = air_force_soldier_array[0][j + 1];
+        j = j + 2;
+    }
+    
+}
+// SOLDIERS UNDER the officer view
+void soldier_under_officer_view_afms(int batch_id)
+{
+    gotoxy(columns_of_screen/3 + 14, 15);
+    cout<<"BATCH ID: "<<soldiers_under_the_officer_afms[0][batch_id];
+    gotoxy(columns_of_screen/3 + 14 , 17);
+    cout<<"BATCH ID: "<<soldiers_under_the_officer_afms[1][batch_id];
+}
+//              SUB OPTION 3
+int to_show_sub_menu_air_force_instruments_afms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_menu_instruments_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+//
+int to_show_sub_detail_view_air_force_instruments_afms(int no_of_index)
+{
+    int rows = 10;
+
+    for (int i = 0; i < no_of_index; i++)
+    {
+        gotoxy(columns_of_screen / 3 + 10, rows);
+        cout << sub_of_sub_menu_instruments_afms[i];
+        rows = rows + 4;
+    }
+    return 1;
+}
+
+// to show air_craft details
+void to_show_air_craft_details_air_force()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_afms_air_craft ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {
+            cout<<readable_instruments_afms[j];
+            cout<<afms_air_craft[i][j]<<"   ";
+        }
+    }
+}
+// to show weapons details
+void to_show_weapons_details_air_force()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_afms_weapons  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   cout<<readable_instruments_afms[j];
+            cout<<afms_weapons[i][j]<<"  ";
+        }
+    }
+
+}
+// to show missiles details
+void to_show_missilies_details_air_force()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_afms_missilies ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_afms[j];
+            cout<<afms_missilies[i][j]<<"   ";
+        }
+    }
+
+}
+// to show planes details
+void to_show_planes_details()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_afms_planes  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_afms[j];
+            cout<<afms_planes[i][j]<<"   ";
+        }
+    }
+
+}
+// to show trackers details
+void to_show_trackers_details()
+{
+    title("INSTRUMENTS MANAGEMENT SYSTEM");
+    for(int i = 0 ; i < count_afms_trackers  ; i++)
+    {
+        gotoxy(columns_of_screen/2 - 20 , 16 + i);
+        for(int j = 0 ; j < 5 ; j++)
+        {   
+            cout<<readable_instruments_afms[j];
+            cout<<afms_trackers[i][j]<<"   ";
+        }
+    }
+
+}
+// to_add data in instruments
+void to_add_data_in_array_air_craft_air_force()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_afms_air_craft;
+    for(int i = 0 ; i < 5 ; i++)
+    {   back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_afms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        afms_air_craft[index][i] = word; 
+    }
+    count_afms_air_craft++;
+}
+// to_add data in instruments
+void to_add_data_in_array_weapons_air_force()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_afms_weapons;
+    for(int i = 0 ; i < 5 ; i++)
+    {   back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_afms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        afms_weapons[index][i] = word; 
+    }
+    count_afms_weapons++;
+}
+// to_add data in instruments
+void to_add_data_in_array_missilies_air_force()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_afms_missilies;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_afms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        afms_missilies[index][i] = word; 
+    }
+    count_afms_missilies++;
+}
+void to_add_data_in_array_planes()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_afms_planes;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_afms[i];
+        
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        afms_planes[index][i] = word; 
+    }
+    count_afms_planes++;
+}
+void to_add_data_in_array_trackers()
+{   
+    title("EDIT DETAILS OF INSTRUMENTS");
+    string word;
+    int index = count_afms_trackers;
+    for(int i = 0 ; i < 5 ; i++)
+    {   
+        back:
+        gotoxy(columns_of_screen/3 , 15 + i);
+        cout<<readable_instruments_afms[i];
+        gotoxy(columns_of_screen/3 + 18 , 15 + i);
+        cin>>word;
+        if(validation_check_instruments(i,word))
+        {
+            gotoxy(columns_of_screen/3 + 18 , 15 + i);
+            cout<<"                               ";
+            goto back;
+        }
+        afms_trackers[index][i] = word; 
+    }
+    count_afms_trackers++;
+}
+// to add data of Weapons
+void to_add_data_of_air_craft_in_txt_air_force()
+{
+    string file_path = "instruments/afms_air_craft.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << afms_air_craft[count_afms_air_craft - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_weapons_in_txt_air_force()
+{
+    string file_path = "instruments/afms_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << afms_weapons[count_afms_weapons - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_planes_in_txt()
+{
+    string file_path = "instruments/afms_planes.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << afms_planes[count_afms_planes - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+
+void to_add_data_of_missilies_in_txt_air_force()
+{
+    string file_path = "instruments/afms_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << afms_missilies[count_afms_missilies - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+void to_add_data_of_trackers_in_txt()
+{
+    string file_path = "instruments/afms_trackers.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::app);
+    file << endl;
+    for(int i = 0 ; i < 5 ; i++)
+    {
+        file << afms_trackers[count_afms_trackers - 1][i];
+        file << ","; 
+    }
+    file.close();
+} 
+// TO EDIT THE INSTRUMENTS RECORD
+void to_edit_instrument_record_air_craft_air_force()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_afms_air_craft ; i++)
+    {
+        cout<<i<<". "<<afms_air_craft[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_afms_air_craft && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_afms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            afms_air_craft[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_weapons_air_force()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_afms_weapons ; i++)
+    {
+        cout<<i<<". "<<afms_weapons[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_afms_weapons && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_afms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            afms_weapons[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_planes()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_afms_planes ; i++)
+    {
+        cout<<i<<". "<<afms_planes[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_afms_planes && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_afms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            afms_planes[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_missilies_air_force()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_afms_missilies ; i++)
+    {
+        cout<<i<<". "<<afms_missilies[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_afms_missilies && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_afms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            afms_missilies[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+void to_edit_instrument_record_trackers()
+{
+    string option;
+    string word;
+    title("EDIT THE INSTRUMENTS RECORD");
+    gotoxy(columns_of_screen/4,15);
+    for(int i = 0 ; i < count_afms_trackers ; i++)
+    {
+        cout<<i<<". "<<afms_trackers[i][0]<<"   ";
+    }
+    back:
+    gotoxy(columns_of_screen/4,17);
+    cin>>option;
+    if(numeric_validation(option))
+    {
+        gotoxy(columns_of_screen/4,17);
+        cout<<"                      ";
+        goto back;
+    }
+    if(stoi(option) < count_afms_trackers && stoi(option) >= 0)
+    {   int row = stoi(option);
+        for(int i = 0 ; i < 5 ; i++)
+        {
+            gotoxy(columns_of_screen/3,19 + i);
+            cout<<readable_instruments_afms[i];
+            backer:
+            gotoxy(columns_of_screen/3 + 20,19 + i);
+            cin>>word;
+            if(validation_check_instruments(i,word))
+            {
+                gotoxy(columns_of_screen/3 + 20,19 + i);
+                cout<<"                   ";
+                goto backer;    
+            }    
+            afms_trackers[row][i] = word;        
+        }
+    }
+    else 
+    {
+        goto back;
+    }
+}
+// ADD WHOLE DATA IN TXT instruments
+void to_add_whole_data_in_txt_air_craft_air_force()
+{
+    string file_path = "instruments/afms_air_craft.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_afms_air_craft ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << afms_air_craft[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// planes
+void to_add_whole_data_in_txt_planes()
+{
+    string file_path = "instruments/afms_planes.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_afms_planes ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << afms_planes[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// mweapons
+void to_add_whole_data_in_txt_weapons_air_force()
+{
+    string file_path = "instruments/afms_weapons.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_afms_weapons ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << afms_weapons[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// missilies
+void to_add_whole_data_in_txt_missilies_air_force()
+{
+    string file_path = "instruments/afms_missilies.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_afms_missilies ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << afms_missilies[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+
+void to_add_whole_data_in_txt_trackers()
+{
+    string file_path = "instruments/afms_trackers.txt";
+    string line;
+    fstream file;
+    file.open(file_path,ios::out);
+
+    for(int i = 0 ; i < count_afms_trackers ; i++)
+    {   if(i != 0)
+        {
+            file << endl;
+        }
+        for(int j = 0 ; j < 5 ; j++)
+        {
+        file << afms_trackers[i][j];
+        file << ","; 
+        }
+    }
+    file.close();
+}
+// sub menu 4
+void graph_afms()
+{   int item_quantity[5] = {0,0,0,0,0};
+    for(int i = 0 ; i < count_afms_air_craft ; i++)
+    {
+        item_quantity[0] = item_quantity[0] + stoi(afms_air_craft[i][2]);
+    }
+    for(int i = 0 ; i < count_afms_weapons ; i++)
+    {
+        item_quantity[1] = item_quantity[1] + stoi(afms_weapons[i][2]);
+    }
+    for(int i = 0 ; i < count_afms_missilies ; i++)
+    {
+        item_quantity[2] = item_quantity[2] + stoi(afms_missilies[i][2]);
+    }
+    for(int i = 0 ; i < count_afms_planes ; i++)
+    {
+        item_quantity[3] = item_quantity[3] + stoi(afms_planes[i][2]);
+    }
+    for(int i = 0 ; i < count_afms_trackers ; i++)
+    {
+        item_quantity[4] = item_quantity[4] + stoi(afms_trackers[i][2]);
+    }
+	int j = 0;
+	for (int i = columns_of_screen / 8; i < columns_of_screen - 1; i++)
+	{
+		gotoxy(i, rows_of_screen - 4);
+		cout << "*";
+	}
+	for (int i = rows_of_screen - 4; i > 8; i--)
+	{
+		gotoxy(columns_of_screen / 8, i);
+		cout << "*";
+	}
+	for (int i = 0; i < 20; i = i + 4)
+	{
+
+		gotoxy(2, rows_of_screen / 3 + i);
+		cout << sub_of_sub_menu_instruments_afms[j];
+		j++;
+	}
+	int x = 0;
+	int screen = columns_of_screen / 8 + 1;
+	for (int i = 0; i < 20; i = i + 4)
+	{
+		for (j = 0; j < item_quantity[x] / 50000; j++)
+		{
+			gotoxy(screen + j, rows_of_screen / 3 + i);
+			cout << "#";
+		}
